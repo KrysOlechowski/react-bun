@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-
-import "./App.css";
+import { API_CLIENT } from "./lib/api";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("/api/expenses");
+      const res = await API_CLIENT.js_cards["get_cards"].$get();
       const data = await res.json();
-      console.log(data);
-      setData(data);
+      console.log(data.cards);
+      setData(data.cards);
     }
     fetchData();
   }, []);

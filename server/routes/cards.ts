@@ -36,9 +36,9 @@ const cardPostSchema = cardSchema.omit({ id: true });
 
 type TestSchema = z.infer<typeof cardSchema>;
 
-export const ROUTES = new Hono()
-  .get("/", async (c) => {
-    return c.json({ expenses: fake_question });
+export const JS_CARDS_ROUTES = new Hono()
+  .get("/get_cards", async (c) => {
+    return c.json({ cards: fake_question });
   })
   .get("/:id{[0-9]+}", async (c) => {
     const id = Number.parseInt(c.req.param("id"));
