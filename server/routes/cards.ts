@@ -54,7 +54,8 @@ export const JS_CARDS_ROUTES = new Hono()
     const card = c.req.valid("json");
     fake_question.push({ ...card, id: 145 });
     c.status(201);
-    return c.json(card);
+    console.log("POST, / ");
+    return c.json({ lol: "lol" });
   })
   .delete("/:id{[0-9]+}", async (c) => {
     const id = Number.parseInt(c.req.param("id"));
