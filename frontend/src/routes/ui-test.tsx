@@ -1,16 +1,12 @@
 import { Button } from "@/components/ui/button";
-import JS_Sidebar from "@/layout/js_sidebar";
-import React_Sidebar from "@/layout/react_sidebar";
+import JS_Sidebar from "@/layout/js_sidebar/js_sidebar";
+import React_Sidebar from "@/layout/react-sidebar/react_sidebar";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 function UITestRoute() {
   const [is_JS_open, set_JS_Open] = useState(false);
   const [is_React_open, set_React_Open] = useState(false);
-  const openJSSidebar = () => {
-    console.log("Open JS Sidebar");
-    set_JS_Open((prev) => !prev);
-  };
 
   return (
     <>

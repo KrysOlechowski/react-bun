@@ -1,5 +1,5 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { JS_Sidebar_Content } from "@/layout/js_sidebar_content";
+import { JS_Sidebar_Content } from "@/layout/js_sidebar/js_sidebar_content";
 
 type Props = {
   children?: React.ReactNode;
