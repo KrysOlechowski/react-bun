@@ -20,7 +20,7 @@ export function JSSidebarHeader() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                Select React Workspace
+                Select JavaScript Workspace
                 <ChevronDown className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
