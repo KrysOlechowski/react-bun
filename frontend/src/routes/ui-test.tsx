@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function UITestRoute() {
   const [is_JS_open, set_JS_Open] = useState(false);
+  const [is_React_open, set_React_Open] = useState(false);
   const openJSSidebar = () => {
     console.log("Open JS Sidebar");
     set_JS_Open((prev) => !prev);
@@ -21,11 +22,16 @@ function UITestRoute() {
           justifyContent: "end",
         }}
       >
-        <Button onClick={openJSSidebar}>Open JS Sidebar</Button>
+        <Button onClick={() => set_JS_Open((prev) => !prev)}>
+          JavaScript Topics
+        </Button>
+        <Button onClick={() => set_React_Open((prev) => !prev)}>
+          React Topics
+        </Button>
       </div>
       <JS_Sidebar isOpen={is_JS_open}></JS_Sidebar>
 
-      <React_Sidebar>
+      <React_Sidebar isOpen={is_React_open}>
         <div>React</div>
       </React_Sidebar>
     </>

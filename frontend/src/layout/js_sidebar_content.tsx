@@ -56,7 +56,7 @@ export function JS_Sidebar_Content({ isOpen }: Props) {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>JS Sidebar</SidebarGroupLabel>
+          <SidebarGroupLabel>JavaScript Topics</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

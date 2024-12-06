@@ -9,7 +9,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
+import { useEffect } from "react";
 
 // Menu items.
 const items = [
@@ -40,12 +42,21 @@ const items = [
   },
 ];
 
-export function React_Sidebar_Content() {
+type Props = {
+  isOpen: boolean;
+};
+
+export function React_Sidebar_Content({ isOpen }: Props) {
+  const { toggleSidebar } = useSidebar();
+  useEffect(() => {
+    console.log(isOpen);
+    toggleSidebar();
+  }, [isOpen]);
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>React Topics</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
