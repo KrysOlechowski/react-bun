@@ -56,65 +56,63 @@ export function JS_Sidebar_Content({ isOpen }: Props) {
     <Sidebar>
       <JSSidebarHeader />
       <SidebarContent>
-        {/* {TOPICS.JS.topics.map((topic) => {
+        {JS_SIDEBAR_SAMPLE_DATA.topics.map((main_topic) => {
           return (
-            <>
-              <h1>{topic.title}</h1>
-            </>
+            <Collapsible defaultOpen={false} className="group/collapsible">
+              <SidebarGroup>
+                <SidebarGroupLabel asChild className="text-base">
+                  <CollapsibleTrigger>
+                    {main_topic.main_topic_title}
+                    <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                  </CollapsibleTrigger>
+                </SidebarGroupLabel>
+                <CollapsibleContent>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {main_topic.sub_topics.map((item) => (
+                        <Collapsible
+                          key={item.title}
+                          asChild
+                          defaultOpen={item.is_default_open}
+                          className="group/collapsible"
+                        >
+                          <SidebarMenuItem>
+                            <CollapsibleTrigger asChild>
+                              <SidebarMenuButton tooltip={item.title}>
+                                {item.icon && <item.icon />}
+                                <span>{item.title}</span>
+                                <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                              </SidebarMenuButton>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                              <SidebarMenuSub>
+                                {item.items?.map((subItem) => (
+                                  <SidebarMenuSubItem key={subItem.title}>
+                                    <SidebarMenuSubButton asChild>
+                                      <a href={subItem.url}>
+                                        <span>{subItem.title}</span>
+                                      </a>
+                                    </SidebarMenuSubButton>
+                                  </SidebarMenuSubItem>
+                                ))}
+                              </SidebarMenuSub>
+                            </CollapsibleContent>
+                          </SidebarMenuItem>
+                        </Collapsible>
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </CollapsibleContent>
+              </SidebarGroup>
+            </Collapsible>
           );
-        })} */}
+        })}
 
         {/* Topic Introduction*/}
-        <Collapsible defaultOpen={false} className="group/collapsible">
-          <SidebarGroup>
-            <SidebarGroupLabel asChild>
-              <CollapsibleTrigger>
-                MAIN TOPIC
-                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {JS_SIDEBAR_SAMPLE_DATA.topics.map((item) => (
-                    <Collapsible
-                      key={item.title}
-                      asChild
-                      defaultOpen={item.is_default_open}
-                      className="group/collapsible"
-                    >
-                      <SidebarMenuItem>
-                        <CollapsibleTrigger asChild>
-                          <SidebarMenuButton tooltip={item.title}>
-                            {item.icon && <item.icon />}
-                            <span>{item.title}</span>
-                            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                          </SidebarMenuButton>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent>
-                          <SidebarMenuSub>
-                            {item.items?.map((subItem) => (
-                              <SidebarMenuSubItem key={subItem.title}>
-                                <SidebarMenuSubButton asChild>
-                                  <a href={subItem.url}>
-                                    <span>{subItem.title}</span>
-                                  </a>
-                                </SidebarMenuSubButton>
-                              </SidebarMenuSubItem>
-                            ))}
-                          </SidebarMenuSub>
-                        </CollapsibleContent>
-                      </SidebarMenuItem>
-                    </Collapsible>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
+
         {/* Topic Introduction*/}
         {/* Topic Values, Types */}
-        <Collapsible defaultOpen={false} className="group/collapsible">
+        {/* <Collapsible defaultOpen={false} className="group/collapsible">
           <SidebarGroup>
             <SidebarGroupLabel asChild>
               <CollapsibleTrigger>
@@ -125,7 +123,7 @@ export function JS_Sidebar_Content({ isOpen }: Props) {
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {JS_SIDEBAR_SAMPLE_DATA.topics.map((item) => (
+                  {JS_SIDEBAR_SAMPLE_DATA.sub_topics.map((item) => (
                     <Collapsible
                       key={item.title}
                       asChild
@@ -160,7 +158,7 @@ export function JS_Sidebar_Content({ isOpen }: Props) {
               </SidebarGroupContent>
             </CollapsibleContent>
           </SidebarGroup>
-        </Collapsible>
+        </Collapsible> */}
         {/* Topic Values, Types*/}
 
         {/* SETTINGS */}
