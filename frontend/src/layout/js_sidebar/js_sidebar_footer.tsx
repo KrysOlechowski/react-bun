@@ -10,6 +10,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { JAVASCRIPT_SIDEBAR } from "@/const/JAVASCRIPT/JAVASCRIPT_SIDEBAR";
 import { User2, ChevronUp } from "lucide-react";
 
 export function JSSidebarFooter() {
@@ -20,7 +21,7 @@ export function JSSidebarFooter() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                <User2 /> Footer
+                <User2 /> {JAVASCRIPT_SIDEBAR.footer_title}
                 <ChevronUp className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
@@ -28,15 +29,16 @@ export function JSSidebarFooter() {
               side="top"
               className="w-[--radix-popper-anchor-width]"
             >
-              <DropdownMenuItem>
-                <span>Account</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span>Billing</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span>Sign out</span>
-              </DropdownMenuItem>
+              {JAVASCRIPT_SIDEBAR.footer_options.map((option) => {
+                return (
+                  <DropdownMenuItem>
+                    <span>
+                      <option.icon />
+                    </span>
+                    <span>{option.title}</span>
+                  </DropdownMenuItem>
+                );
+              })}
             </DropdownMenuContent>
           </DropdownMenu>
         </SidebarMenuItem>

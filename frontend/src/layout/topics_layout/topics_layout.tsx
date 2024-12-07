@@ -21,8 +21,6 @@ import {
 import { Button } from "@/components/ui/button";
 
 export function TopicsLayout() {
-  const JS_TOPICS = JS_SIDEBAR_SAMPLE_DATA;
-
   return (
     <div className="mx-auto max-w-[500px] border-solid border-2 border-sky-500">
       <SidebarProvider>

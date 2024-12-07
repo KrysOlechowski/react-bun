@@ -11,6 +11,7 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar";
 import { ChevronDown } from "lucide-react";
+import { JAVASCRIPT_SIDEBAR } from "@/const/JAVASCRIPT/JAVASCRIPT_SIDEBAR";
 
 export function JSSidebarHeader() {
   return (
@@ -20,17 +21,21 @@ export function JSSidebarHeader() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                Select JavaScript Workspace
+                {JAVASCRIPT_SIDEBAR.header_title}
                 <ChevronDown className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-              <DropdownMenuItem>
-                <span>Beginner</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span>Professional</span>
-              </DropdownMenuItem>
+              {JAVASCRIPT_SIDEBAR.header_options.map((option) => {
+                return (
+                  <DropdownMenuItem>
+                    <span>
+                      <option.icon />
+                    </span>
+                    <span>{option.title}</span>
+                  </DropdownMenuItem>
+                );
+              })}
             </DropdownMenuContent>
           </DropdownMenu>
         </SidebarMenuItem>
