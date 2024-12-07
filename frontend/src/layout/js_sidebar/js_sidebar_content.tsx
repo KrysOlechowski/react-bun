@@ -56,9 +56,13 @@ export function JS_Sidebar_Content({ isOpen }: Props) {
     <Sidebar>
       <JSSidebarHeader />
       <SidebarContent>
-        {JS_SIDEBAR_SAMPLE_DATA.topics.map((main_topic) => {
+        {JS_SIDEBAR_SAMPLE_DATA.topics.map((main_topic, i) => {
           return (
-            <Collapsible defaultOpen={false} className="group/collapsible">
+            <Collapsible
+              key={i}
+              defaultOpen={false}
+              className="group/collapsible"
+            >
               <SidebarGroup>
                 <SidebarGroupLabel asChild className="text-base">
                   <CollapsibleTrigger>

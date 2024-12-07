@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import JS_Sidebar from "@/layout/js_sidebar/js_sidebar";
 import React_Sidebar from "@/layout/react-sidebar/react_sidebar";
+import { TopicsLayout } from "@/layout/topics_layout/topics_layout";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
@@ -10,14 +11,7 @@ function UITestRoute() {
 
   return (
     <>
-      <h1>Sidebar</h1>
-      <div
-        style={{
-          border: "1px solid green",
-          display: "flex",
-          justifyContent: "end",
-        }}
-      >
+      <div>
         <Button onClick={() => set_JS_Open((prev) => !prev)}>
           JavaScript Topics
         </Button>
@@ -25,6 +19,8 @@ function UITestRoute() {
           React Topics
         </Button>
       </div>
+
+      <TopicsLayout />
       <JS_Sidebar isOpen={is_JS_open}></JS_Sidebar>
 
       <React_Sidebar isOpen={is_React_open}>
