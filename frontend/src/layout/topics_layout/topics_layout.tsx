@@ -18,6 +18,7 @@ import {
   SidebarMenuSubItem,
   SidebarProvider,
 } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
 
 export function TopicsLayout() {
   const JS_TOPICS = JS_SIDEBAR_SAMPLE_DATA;
@@ -43,6 +44,19 @@ export function TopicsLayout() {
                   <CollapsibleContent>
                     <SidebarGroupContent>
                       <SidebarMenu>
+                        <Collapsible>
+                          <SidebarMenuItem className="flex items-center justify-around bg-slate-300 h-10">
+                            <Button className="text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
+                              Wszystkie
+                            </Button>
+                            <Button className="text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
+                              Nieprzeczytane
+                            </Button>
+                            <Button className="text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
+                              Resetuj
+                            </Button>
+                          </SidebarMenuItem>
+                        </Collapsible>
                         {main_topic.sub_topics.map((item) => (
                           <Collapsible
                             key={item.title}
