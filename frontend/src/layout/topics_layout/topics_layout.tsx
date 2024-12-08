@@ -19,6 +19,8 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { randomIntFromInterval } from "@/utils/numbers";
 
 export function TopicsLayout() {
   return (
@@ -26,18 +28,32 @@ export function TopicsLayout() {
       <SidebarProvider>
         <SidebarContent>
           {JS_SIDEBAR_SAMPLE_DATA.topics.map((main_topic, i) => {
+            const progressValue = randomIntFromInterval(1, 100);
+
             return (
               <Collapsible
                 key={i}
-                defaultOpen={false}
+                defaultOpen={main_topic?.is_default_open}
                 className="group/collapsible"
               >
                 <SidebarGroup>
                   <SidebarGroupLabel asChild className="text-base">
-                    <CollapsibleTrigger>
-                      {main_topic.main_topic_title}
-                      <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                    </CollapsibleTrigger>
+                    <>
+                      <CollapsibleTrigger>
+                        <div className="flex flex-row ">
+                          {main_topic.main_topic_title}
+                          {/* <span className="text-xs">100%</span> */}
+                          <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                        </div>
+                      </CollapsibleTrigger>
+                      <div className="flex flex-row items-center">
+                        <Progress
+                          value={progressValue}
+                          className="w-[250px] h-1 my-1"
+                        />
+                        <span className="text-xs ml-4">{progressValue}%</span>
+                      </div>
+                    </>
                   </SidebarGroupLabel>
                   <CollapsibleContent>
                     <SidebarGroupContent>
@@ -55,37 +71,43 @@ export function TopicsLayout() {
                             </Button>
                           </SidebarMenuItem>
                         </Collapsible>
-                        {main_topic.sub_topics.map((item) => (
-                          <Collapsible
-                            key={item.title}
-                            asChild
-                            defaultOpen={item.is_default_open}
-                            className="group/collapsible"
-                          >
-                            <SidebarMenuItem>
-                              <CollapsibleTrigger asChild>
-                                <SidebarMenuButton tooltip={item.title}>
-                                  {item.icon && <item.icon />}
-                                  <span>{item.title}</span>
-                                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                                </SidebarMenuButton>
-                              </CollapsibleTrigger>
-                              <CollapsibleContent>
-                                <SidebarMenuSub>
-                                  {item.items?.map((subItem) => (
-                                    <SidebarMenuSubItem key={subItem.title}>
-                                      <SidebarMenuSubButton asChild>
-                                        <a href={subItem.url}>
-                                          <span>{subItem.title}</span>
-                                        </a>
-                                      </SidebarMenuSubButton>
-                                    </SidebarMenuSubItem>
-                                  ))}
-                                </SidebarMenuSub>
-                              </CollapsibleContent>
-                            </SidebarMenuItem>
-                          </Collapsible>
-                        ))}
+                        {main_topic.sub_topics.map((item) => {
+                          const lessonsProgress = randomIntFromInterval(0, 4);
+                          return (
+                            <Collapsible
+                              key={item.title}
+                              asChild
+                              defaultOpen={item.is_default_open}
+                              className="group/collapsible"
+                            >
+                              <SidebarMenuItem>
+                                <CollapsibleTrigger asChild>
+                                  <SidebarMenuButton tooltip={item.title}>
+                                    {item.icon && <item.icon />}
+                                    <span>{item.title}</span>
+                                    <span>
+                                      {lessonsProgress}/{lessonsProgress + 3}
+                                    </span>
+                                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                                  </SidebarMenuButton>
+                                </CollapsibleTrigger>
+                                <CollapsibleContent>
+                                  <SidebarMenuSub>
+                                    {item.items?.map((subItem) => (
+                                      <SidebarMenuSubItem key={subItem.title}>
+                                        <SidebarMenuSubButton asChild>
+                                          <a href={subItem.url}>
+                                            <span>{subItem.title}</span>
+                                          </a>
+                                        </SidebarMenuSubButton>
+                                      </SidebarMenuSubItem>
+                                    ))}
+                                  </SidebarMenuSub>
+                                </CollapsibleContent>
+                              </SidebarMenuItem>
+                            </Collapsible>
+                          );
+                        })}
                       </SidebarMenu>
                     </SidebarGroupContent>
                   </CollapsibleContent>

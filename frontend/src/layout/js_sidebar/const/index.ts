@@ -203,6 +203,7 @@ export const JS_SIDEBAR_SAMPLE_DATA = {
         avatar: "/avatars/shadcn.jpg",
       },
       main_topic_title: "3. Types, Values, and Variables",
+      is_default_open: true,
 
       sub_topics: [
         {
@@ -221,6 +222,7 @@ export const JS_SIDEBAR_SAMPLE_DATA = {
           title: "3.2. Numbers",
           url: "#",
           icon: Bot,
+          is_default_open: true,
           items: [
             {
               title: "3.2.1. Integer Literals",
