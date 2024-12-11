@@ -4,13 +4,21 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { JS_SIDEBAR_SAMPLE_DATA } from "../js_sidebar/const";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import {
+  ArrowBigRightDash,
+  ChevronDown,
+  ChevronRight,
+  Home,
+  MoreHorizontal,
+  Shuffle,
+} from "lucide-react";
 import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -21,6 +29,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { randomIntFromInterval } from "@/utils/numbers";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function TopicsLayout() {
   return (
@@ -59,16 +73,35 @@ export function TopicsLayout() {
                     <SidebarGroupContent>
                       <SidebarMenu>
                         <Collapsible>
-                          <SidebarMenuItem className="flex items-center justify-around bg-slate-300 h-10">
-                            <Button className="text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
-                              Wszystkie
+                          <SidebarMenuItem className="pr-10 flex items-center  bg-slate-300 h-10">
+                            <Button className="mr-3 text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
+                              Random
+                              <span>
+                                <Shuffle />
+                              </span>
                             </Button>
                             <Button className="text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
-                              Nieprzeczytane
+                              Następny: 3.2.2. Floating-Point Literals{" "}
+                              <span>
+                                <ArrowBigRightDash />
+                              </span>
                             </Button>
-                            <Button className="text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
-                              Resetuj
-                            </Button>
+
+                            <DropdownMenu>
+                              <DropdownMenuTrigger asChild>
+                                <SidebarMenuAction>
+                                  <MoreHorizontal />
+                                </SidebarMenuAction>
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent side="right" align="start">
+                                <DropdownMenuItem>
+                                  <span>Reset Progress</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  <span>Mark all done</span>
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
                           </SidebarMenuItem>
                         </Collapsible>
                         {main_topic.sub_topics.map((item) => {
