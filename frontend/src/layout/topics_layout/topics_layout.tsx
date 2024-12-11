@@ -35,19 +35,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { JAVASCRIPT_TOPICS } from "@/const/JAVASCRIPT/JAVASCRIPT_TOPICS";
 
 export function TopicsLayout() {
+  const TOPICS = JAVASCRIPT_TOPICS;
+  //   const TOPICS = JS_SIDEBAR_SAMPLE_DATA;
+
   return (
     <div className="mx-auto max-w-[500px] border-solid border-2 border-sky-500">
       <SidebarProvider>
         <SidebarContent>
-          {JS_SIDEBAR_SAMPLE_DATA.topics.map((main_topic, i) => {
+          {TOPICS.topics.map((main_topic, i) => {
             const progressValue = randomIntFromInterval(1, 100);
 
             return (
               <Collapsible
                 key={i}
-                defaultOpen={main_topic?.is_default_open}
+                defaultOpen={main_topic.is_default_open}
                 className="group/collapsible"
               >
                 <SidebarGroup>
@@ -55,7 +59,7 @@ export function TopicsLayout() {
                     <>
                       <CollapsibleTrigger>
                         <div className="flex flex-row ">
-                          {main_topic.main_topic_title}
+                          {main_topic.title}
                           {/* <span className="text-xs">100%</span> */}
                           <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                         </div>
@@ -81,7 +85,7 @@ export function TopicsLayout() {
                               </span>
                             </Button>
                             <Button className="text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
-                              Następny: 3.2.2. Floating-Point Literals{" "}
+                              Następny: 1.1.1. Integer Literals
                               <span>
                                 <ArrowBigRightDash />
                               </span>
@@ -104,20 +108,20 @@ export function TopicsLayout() {
                             </DropdownMenu>
                           </SidebarMenuItem>
                         </Collapsible>
-                        {main_topic.sub_topics.map((item) => {
+                        {main_topic.sub_topics.map((sub_topic) => {
                           const lessonsProgress = randomIntFromInterval(0, 4);
                           return (
                             <Collapsible
-                              key={item.title}
+                              key={sub_topic.title}
                               asChild
-                              defaultOpen={item.is_default_open}
+                              defaultOpen={sub_topic.is_default_open}
                               className="group/collapsible"
                             >
                               <SidebarMenuItem>
                                 <CollapsibleTrigger asChild>
-                                  <SidebarMenuButton tooltip={item.title}>
-                                    {item.icon && <item.icon />}
-                                    <span>{item.title}</span>
+                                  <SidebarMenuButton tooltip={sub_topic.title}>
+                                    {sub_topic.icon && <sub_topic.icon />}
+                                    <span>{sub_topic.title}</span>
                                     <span>
                                       {lessonsProgress}/{lessonsProgress + 3}
                                     </span>
@@ -126,11 +130,11 @@ export function TopicsLayout() {
                                 </CollapsibleTrigger>
                                 <CollapsibleContent>
                                   <SidebarMenuSub>
-                                    {item.items?.map((subItem) => (
-                                      <SidebarMenuSubItem key={subItem.title}>
+                                    {sub_topic.lessons.map((lesson) => (
+                                      <SidebarMenuSubItem key={lesson.title}>
                                         <SidebarMenuSubButton asChild>
-                                          <a href={subItem.url}>
-                                            <span>{subItem.title}</span>
+                                          <a href={lesson.url}>
+                                            <span>{lesson.title}</span>
                                           </a>
                                         </SidebarMenuSubButton>
                                       </SidebarMenuSubItem>

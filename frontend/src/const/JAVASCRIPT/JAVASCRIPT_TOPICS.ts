@@ -1,34 +1,15 @@
 import { SquareTerminal } from "lucide-react";
 
-const API_USER_FAKE_DATA = {
-  id: "213123",
-  user_name: "John",
-  created_at: "8.12.2024",
-  app_settings: {
-    theme: "default",
-  },
-  javascript_lessons: {
-    number_of_correct_answers: 15,
-    lessons: [
-      {
-        index: "1.",
-      },
-      {},
-    ],
-  },
-  react_lessons: {
-    number_of_correct_answers: 16,
-    lessons: [],
-  },
-};
-
 export const JAVASCRIPT_TOPICS = {
   tech_topic: "JavaScript",
+  is_default_open: true,
+  is_open: false,
+  order_index: 1,
   topics: [
     {
       index: "1.",
-      topic_title: "1. Types, Values, and Variables",
-      is_default_open: false,
+      title: "1. Types, Values, and Variables",
+      is_default_open: true,
       is_open: false,
       number_of_sub_topics: 5,
       difficulty_level: 1,
@@ -39,7 +20,7 @@ export const JAVASCRIPT_TOPICS = {
           url: "#",
           difficulty_level: 1,
           icon: SquareTerminal,
-          is_default_open: false,
+          is_default_open: true,
           is_open: false,
           is_lessons_started: false,
           lessons: [
@@ -54,7 +35,25 @@ export const JAVASCRIPT_TOPICS = {
             },
             {
               index: "1.1.2.",
-              title: "1.1.1. Floating-Point Literals",
+              title: "1.1.2. Floating-Point Literals",
+              url: "*",
+              is_lesson_correct: false,
+              is_lesson_started: false,
+              icon: SquareTerminal,
+              difficulty_level: 1,
+            },
+            {
+              index: "1.1.3.",
+              title: "1.1.3. Arithmetic in JavaScript",
+              url: "*",
+              is_lesson_correct: false,
+              is_lesson_started: false,
+              icon: SquareTerminal,
+              difficulty_level: 1,
+            },
+            {
+              index: "1.1.4.",
+              title: "1.1.4. Dates and Times",
               url: "*",
               is_lesson_correct: false,
               is_lesson_started: false,
@@ -85,6 +84,36 @@ export const JAVASCRIPT_TOPICS = {
             {
               index: "1.2.2.",
               title: "1.2.2. Boolean coercion",
+              url: "*",
+              is_lesson_correct: false,
+              is_lesson_started: false,
+              icon: SquareTerminal,
+              difficulty_level: 1,
+            },
+          ],
+        },
+        {
+          index: "1.3.",
+          title: "1.3. null and undefined",
+          url: "#",
+          difficulty_level: 1,
+          icon: SquareTerminal,
+          is_default_open: false,
+          is_open: false,
+          is_lessons_started: false,
+          lessons: [
+            {
+              index: "1.3.1.",
+              title: "1.3.1. What is null",
+              url: "*",
+              is_lesson_correct: false,
+              is_lesson_started: false,
+              icon: SquareTerminal,
+              difficulty_level: 1,
+            },
+            {
+              index: "1.3.2.",
+              title: "1.3.2. What is undefined",
               url: "*",
               is_lesson_correct: false,
               is_lesson_started: false,

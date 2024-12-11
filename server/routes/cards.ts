@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
+import supabase from "../utils/supabase";
 
 type Question = {
   id: number;
@@ -38,7 +39,10 @@ type TestSchema = z.infer<typeof cardSchema>;
 
 export const JS_CARDS_ROUTES = new Hono()
   .get("/get_cards", async (c) => {
-    return c.json({ cards: fake_question });
+    const { data: countries } = await supabase.from("countries").select();
+    console.log("/get_cards");
+    console.log(countries);
+    return c.json({ cards: countries });
   })
   .get("/:id{[0-9]+}", async (c) => {
     const id = Number.parseInt(c.req.param("id"));
