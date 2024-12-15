@@ -33,7 +33,7 @@ function IndexRoute() {
         {data?.length
           ? data.map((el) => {
               return (
-                <div>
+                <div key={el.id}>
                   <span className="m-2 border-l-rose-900">{el.title}</span>
                   <span className="m-2 border-l-rose-900">{el.amount}</span>
                   <span className="m-2 border-l-rose-900">{el.id}</span>

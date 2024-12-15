@@ -28,7 +28,7 @@ export function JSSidebarHeader() {
             <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
               {JAVASCRIPT_SIDEBAR.header_options.map((option) => {
                 return (
-                  <DropdownMenuItem>
+                  <DropdownMenuItem key={option.title}>
                     <span>
                       <option.icon />
                     </span>

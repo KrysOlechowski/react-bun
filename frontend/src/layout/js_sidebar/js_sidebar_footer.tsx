@@ -31,7 +31,7 @@ export function JSSidebarFooter() {
             >
               {JAVASCRIPT_SIDEBAR.footer_options.map((option) => {
                 return (
-                  <DropdownMenuItem>
+                  <DropdownMenuItem key={option.title}>
                     <span>
                       <option.icon />
                     </span>
