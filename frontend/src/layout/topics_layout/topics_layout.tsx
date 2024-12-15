@@ -3,12 +3,10 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { JS_SIDEBAR_SAMPLE_DATA } from "../js_sidebar/const";
 import {
   ArrowBigRightDash,
   ChevronDown,
   ChevronRight,
-  Home,
   MoreHorizontal,
   Shuffle,
 } from "lucide-react";
@@ -78,13 +76,13 @@ export function TopicsLayout() {
                       <SidebarMenu>
                         <Collapsible>
                           <SidebarMenuItem className="pr-10 flex items-center  bg-slate-300 h-10">
-                            <Button className="mr-3 text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
+                            <Button className="mr-3 text-xs text-black bg-white p-2 hover:bg-slate-500 h-6">
                               Random
                               <span>
                                 <Shuffle />
                               </span>
                             </Button>
-                            <Button className="text-xs text-black bg-white p-2 hover:bg-slate-300 h-6">
+                            <Button className="text-xs text-black bg-white p-2 hover:bg-slate-500 h-6">
                               Następny: 1.1.1. Integer Literals
                               <span>
                                 <ArrowBigRightDash />

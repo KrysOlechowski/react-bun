@@ -6,7 +6,7 @@ export const Route = createRootRoute({
     <>
       <NavBar />
       <Outlet />
-      {/* <TanStackRouterDevtools /> */}
+      <TanStackRouterDevtools />
     </>
   ),
 });
@@ -23,7 +23,6 @@ function NavBar() {
         </Link>
       </div>
       <hr />
-      <h1>lol</h1>
     </>
   );
 }
