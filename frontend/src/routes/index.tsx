@@ -18,6 +18,30 @@ async function getJSCards() {
   return data.cards;
 }
 
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const onLogin = async () => {
+  console.log("login");
+  const res = await supabase.auth.signInWithOAuth({
+    provider: "google",
+  });
+  console.log(res);
+};
+
+const onLogout = async () => {
+  console.log("logout");
+  const { error } = await supabase.auth.signOut();
+  console.log(error);
+};
+
+const {
+  data: { user },
+} = await supabase.auth.getUser();
+
 function IndexRoute() {
   const [count, setCount] = useState(0);
 
@@ -44,28 +68,13 @@ function IndexRoute() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <Button variant="outline">Button</Button>
-        <div
-          id="g_id_onload"
-          data-client_id="<client ID>"
-          data-context="signin"
-          data-ux_mode="popup"
-          data-callback="handleSignInWithGoogle"
-          data-nonce=""
-          data-auto_select="true"
-          data-itp_support="true"
-          data-use_fedcm_for_prompt="true"
-        ></div>
-
-        <div
-          className="g_id_signin"
-          data-type="standard"
-          data-shape="pill"
-          data-theme="outline"
-          data-text="signin_with"
-          data-size="large"
-          data-logo_alignment="left"
-        ></div>
+        <h1>{user ? user.email : "Not logged in"}</h1>
+        <Button onClick={onLogin} variant="outline">
+          Login
+        </Button>
+        <Button onClick={onLogout} variant="outline">
+          Logout
+        </Button>
       </div>
     </>
   );
