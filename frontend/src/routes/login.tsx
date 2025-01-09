@@ -10,6 +10,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 function RouteComponent() {
   const { userName, setUserName } = useUserStore();
 
+  const MODE = import.meta.env.MODE;
+  console.log({ MODE });
+
   useEffect(() => {
     console.log("check If User");
     checkUser();
@@ -27,10 +30,11 @@ function RouteComponent() {
 
   const onLogin = async () => {
     console.log("login");
+
     const res = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "/admin",
+        redirectTo: "http://localhost:5173/admin",
       },
     });
     console.log(res);
@@ -44,6 +48,7 @@ function RouteComponent() {
   };
   return (
     <div>
+      <h1>{MODE}</h1>
       <h1>{userName ? userName : "Not logged in"}</h1>
       <div>
         <button onClick={onLogin}>Login with Google</button>
