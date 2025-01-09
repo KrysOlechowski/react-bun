@@ -30,11 +30,14 @@ function RouteComponent() {
 
   const onLogin = async () => {
     console.log("login");
-
+    const redirectUrl =
+      MODE === "development"
+        ? "http://localhost:5173/ui-test"
+        : "https://react-bun.onrender.com/ui-test";
     const res = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:5173/admin",
+        redirectTo: redirectUrl,
       },
     });
     console.log(res);
