@@ -18,30 +18,6 @@ async function getJSCards() {
   return data.cards;
 }
 
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-const onLogin = async () => {
-  console.log("login");
-  const res = await supabase.auth.signInWithOAuth({
-    provider: "google",
-  });
-  console.log(res);
-};
-
-const onLogout = async () => {
-  console.log("logout");
-  const { error } = await supabase.auth.signOut();
-  console.log(error);
-};
-
-const {
-  data: { user },
-} = await supabase.auth.getUser();
-
 function IndexRoute() {
   const [count, setCount] = useState(0);
 
@@ -68,13 +44,6 @@ function IndexRoute() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <h1>{user ? user.email : "Not logged in"}</h1>
-        <Button onClick={onLogin} variant="outline">
-          Login
-        </Button>
-        <Button onClick={onLogout} variant="outline">
-          Logout
-        </Button>
       </div>
     </>
   );
