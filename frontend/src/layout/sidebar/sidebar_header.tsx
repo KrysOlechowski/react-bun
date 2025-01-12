@@ -28,12 +28,14 @@ export function SidebarHeader() {
             <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
               {SIDEBAR_CONTENT.header_options.map((option) => {
                 return (
-                  <DropdownMenuItem key={option.title}>
-                    <span>
-                      <option.icon />
-                    </span>
-                    <span>{option.title}</span>
-                  </DropdownMenuItem>
+                  <a href={option.url} key={option.title}>
+                    <DropdownMenuItem key={option.title}>
+                      <span>
+                        <option.icon />
+                      </span>
+                      <span>{option.title}</span>
+                    </DropdownMenuItem>
+                  </a>
                 );
               })}
             </DropdownMenuContent>

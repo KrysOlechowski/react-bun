@@ -25,6 +25,23 @@ export const SIDEBAR_CONTENT = {
       icon: Bot,
     },
   ],
+  sidebar_middle: [
+    {
+      title: "Middle test",
+      content: [
+        {
+          title: "Middle content",
+          icon: Bot,
+          sub_content: [
+            {
+              title: "SubTitle content",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+
   settings_title: "Settings",
   settings: [
     {

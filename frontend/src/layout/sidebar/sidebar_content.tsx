@@ -37,8 +37,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarHeader as SidebarHeaderUI } from "./sidebar_header";
 import { SidebarFooter } from "./sidebar_footer";
-import { JS_SIDEBAR_SAMPLE_DATA } from "./const";
-import { APP_TOPICS } from "../const";
+import { SIDEBAR_CONTENT } from "@/const/SIDEBAR_CONTENT";
 
 type Props = {
   isOpen: boolean;
@@ -46,17 +45,14 @@ type Props = {
 
 export function Sidebar_Content({ isOpen }: Props) {
   const { toggleSidebar, isMobile } = useSidebar();
-  const TOPICS = APP_TOPICS;
-  console.log(TOPICS.JS);
   useEffect(() => {
-    console.log(isOpen);
     toggleSidebar();
   }, [isOpen]);
   return (
     <Sidebar>
       <SidebarHeaderUI />
       <SidebarContent>
-        {JS_SIDEBAR_SAMPLE_DATA.topics.map((main_topic, i) => {
+        {SIDEBAR_CONTENT.sidebar_middle.map((middle, i) => {
           return (
             <Collapsible
               key={i}
@@ -66,18 +62,17 @@ export function Sidebar_Content({ isOpen }: Props) {
               <SidebarGroup>
                 <SidebarGroupLabel asChild className="text-base">
                   <CollapsibleTrigger>
-                    {main_topic.main_topic_title}
+                    {middle.title}
                     <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                   </CollapsibleTrigger>
                 </SidebarGroupLabel>
                 <CollapsibleContent>
                   <SidebarGroupContent>
                     <SidebarMenu>
-                      {main_topic.sub_topics.map((item) => (
+                      {middle.content.map((item) => (
                         <Collapsible
                           key={item.title}
                           asChild
-                          defaultOpen={item.is_default_open}
                           className="group/collapsible"
                         >
                           <SidebarMenuItem>
@@ -90,12 +85,10 @@ export function Sidebar_Content({ isOpen }: Props) {
                             </CollapsibleTrigger>
                             <CollapsibleContent>
                               <SidebarMenuSub>
-                                {item.items?.map((subItem) => (
-                                  <SidebarMenuSubItem key={subItem.title}>
+                                {item.sub_content?.map((sub) => (
+                                  <SidebarMenuSubItem key={sub.title}>
                                     <SidebarMenuSubButton asChild>
-                                      <a href={subItem.url}>
-                                        <span>{subItem.title}</span>
-                                      </a>
+                                      <span>{sub.title}</span>
                                     </SidebarMenuSubButton>
                                   </SidebarMenuSubItem>
                                 ))}
@@ -115,10 +108,10 @@ export function Sidebar_Content({ isOpen }: Props) {
         {/* SETTINGS */}
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>
-            {JS_SIDEBAR_SAMPLE_DATA.settings_title}
+            {SIDEBAR_CONTENT.settings_title}
           </SidebarGroupLabel>
           <SidebarMenu>
-            {JS_SIDEBAR_SAMPLE_DATA.settings.map((item) => (
+            {SIDEBAR_CONTENT.settings.map((item) => (
               <SidebarMenuItem key={item.name}>
                 <SidebarMenuButton asChild>
                   <a href={item.url}>
