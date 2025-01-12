@@ -1,4 +1,4 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { Sidebar_Content } from "@/layout/sidebar/sidebar_content";
 
 type Props = {
@@ -10,10 +10,7 @@ export default function Sidebar({ children, isOpen = false }: Props) {
   return (
     <SidebarProvider>
       <Sidebar_Content isOpen={isOpen} />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
+      <main>{children}</main>
     </SidebarProvider>
   );
 }

@@ -11,9 +11,11 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { SIDEBAR_CONTENT } from "@/const/SIDEBAR_CONTENT";
+import { useUserStore } from "@/store/user/user";
 import { User2, ChevronUp } from "lucide-react";
 
 export function SidebarFooter() {
+  const { userName } = useUserStore();
   return (
     <SidebarFooterUI>
       <SidebarMenu>
@@ -21,7 +23,7 @@ export function SidebarFooter() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                <User2 /> {SIDEBAR_CONTENT.footer_title}
+                <User2 /> {userName ?? "Guest"}
                 <ChevronUp className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>

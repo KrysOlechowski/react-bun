@@ -60,7 +60,6 @@ export const SIDEBAR_CONTENT = {
       icon: Map,
     },
   ],
-  footer_title: "User",
   footer_icon: BookOpen,
   footer_options: [
     {

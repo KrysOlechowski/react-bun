@@ -33,17 +33,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { JAVASCRIPT_TOPICS } from "@/const/JAVASCRIPT/JAVASCRIPT_TOPICS";
 
-export function TopicsLayout() {
-  const TOPICS = JAVASCRIPT_TOPICS;
-  //   const TOPICS = JS_SIDEBAR_SAMPLE_DATA;
+import { TopicsType } from "@/types/topics_types";
 
+type Props = {
+  lessons: TopicsType;
+};
+
+export const TopicsLayout = ({ lessons }: Props) => {
   return (
     <div className="mx-auto max-w-[500px] border-solid border-2 border-sky-500">
       <SidebarProvider>
         <SidebarContent>
-          {TOPICS.topics.map((main_topic, i) => {
+          {lessons.topics.map((main_topic, i) => {
             const progressValue = randomIntFromInterval(1, 100);
 
             return (
@@ -58,7 +60,6 @@ export function TopicsLayout() {
                       <CollapsibleTrigger>
                         <div className="flex flex-row ">
                           {main_topic.title}
-                          {/* <span className="text-xs">100%</span> */}
                           <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                         </div>
                       </CollapsibleTrigger>
@@ -154,4 +155,4 @@ export function TopicsLayout() {
       </SidebarProvider>
     </div>
   );
-}
+};
