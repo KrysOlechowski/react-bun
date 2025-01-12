@@ -11,22 +11,22 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as UiTestImport } from './routes/ui-test'
 import { Route as LoginImport } from './routes/login'
+import { Route as JsImport } from './routes/js'
 import { Route as AdminImport } from './routes/admin'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const UiTestRoute = UiTestImport.update({
-  id: '/ui-test',
-  path: '/ui-test',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const LoginRoute = LoginImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const JsRoute = JsImport.update({
+  id: '/js',
+  path: '/js',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,18 +60,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminImport
       parentRoute: typeof rootRoute
     }
+    '/js': {
+      id: '/js'
+      path: '/js'
+      fullPath: '/js'
+      preLoaderRoute: typeof JsImport
+      parentRoute: typeof rootRoute
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/ui-test': {
-      id: '/ui-test'
-      path: '/ui-test'
-      fullPath: '/ui-test'
-      preLoaderRoute: typeof UiTestImport
       parentRoute: typeof rootRoute
     }
   }
@@ -82,46 +82,46 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/js': typeof JsRoute
   '/login': typeof LoginRoute
-  '/ui-test': typeof UiTestRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/js': typeof JsRoute
   '/login': typeof LoginRoute
-  '/ui-test': typeof UiTestRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/js': typeof JsRoute
   '/login': typeof LoginRoute
-  '/ui-test': typeof UiTestRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/login' | '/ui-test'
+  fullPaths: '/' | '/admin' | '/js' | '/login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/login' | '/ui-test'
-  id: '__root__' | '/' | '/admin' | '/login' | '/ui-test'
+  to: '/' | '/admin' | '/js' | '/login'
+  id: '__root__' | '/' | '/admin' | '/js' | '/login'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  JsRoute: typeof JsRoute
   LoginRoute: typeof LoginRoute
-  UiTestRoute: typeof UiTestRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  JsRoute: JsRoute,
   LoginRoute: LoginRoute,
-  UiTestRoute: UiTestRoute,
 }
 
 export const routeTree = rootRoute
@@ -136,8 +136,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/admin",
-        "/login",
-        "/ui-test"
+        "/js",
+        "/login"
       ]
     },
     "/": {
@@ -146,11 +146,11 @@ export const routeTree = rootRoute
     "/admin": {
       "filePath": "admin.tsx"
     },
+    "/js": {
+      "filePath": "js.tsx"
+    },
     "/login": {
       "filePath": "login.tsx"
-    },
-    "/ui-test": {
-      "filePath": "ui-test.tsx"
     }
   }
 }

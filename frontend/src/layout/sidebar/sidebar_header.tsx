@@ -8,33 +8,38 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarHeader,
+  SidebarHeader as SidebarHeaderUI,
 } from "@/components/ui/sidebar";
 import { ChevronDown } from "lucide-react";
+import { SIDEBAR_CONTENT } from "@/const/SIDEBAR_CONTENT";
 
-export function ReactSidebarHeader() {
+export function SidebarHeader() {
   return (
-    <SidebarHeader>
+    <SidebarHeaderUI>
       <SidebarMenu>
         <SidebarMenuItem>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton>
-                Select React Workspace
+                {SIDEBAR_CONTENT.header_title}
                 <ChevronDown className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-              <DropdownMenuItem>
-                <span>Beginner</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span>Professional</span>
-              </DropdownMenuItem>
+              {SIDEBAR_CONTENT.header_options.map((option) => {
+                return (
+                  <DropdownMenuItem key={option.title}>
+                    <span>
+                      <option.icon />
+                    </span>
+                    <span>{option.title}</span>
+                  </DropdownMenuItem>
+                );
+              })}
             </DropdownMenuContent>
           </DropdownMenu>
         </SidebarMenuItem>
       </SidebarMenu>
-    </SidebarHeader>
+    </SidebarHeaderUI>
   );
 }

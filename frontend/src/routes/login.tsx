@@ -1,11 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createClient } from "@supabase/supabase-js";
 import { useEffect } from "react";
-import { useUserStore } from "@/store/user";
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { useUserStore } from "@/store/user/user";
+import { supabase } from "@/main";
+import { onLogoutUser } from "@/store/user/utils/logout_user";
 
 function RouteComponent() {
   const { userName, setUserName } = useUserStore();
@@ -32,23 +29,21 @@ function RouteComponent() {
     console.log("login");
     const redirectUrl =
       MODE === "development"
-        ? "http://localhost:5173/ui-test"
-        : "https://react-bun.onrender.com/ui-test";
-    const res = await supabase.auth.signInWithOAuth({
+        ? "http://localhost:5173/js"
+        : "https://react-bun.onrender.com/js";
+    await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: redirectUrl,
       },
     });
-    console.log(res);
   };
 
-  const onLogout = async () => {
-    console.log("logout");
-    const { error } = await supabase.auth.signOut();
-    console.log(error);
-    setUserName(null);
+  const onLogout = () => {
+    console.log("log1");
+    onLogoutUser();
   };
+
   return (
     <div>
       <h1>{MODE}</h1>

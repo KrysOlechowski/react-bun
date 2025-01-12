@@ -1,16 +1,27 @@
+import { onLogoutUser } from "@/store/user/utils/logout_user";
 import { BookOpen, Bot, Map, Frame, PieChart } from "lucide-react";
 
-export const JAVASCRIPT_SIDEBAR = {
-  header_title: "JavaScript Header",
+export const SIDEBAR_CONTENT = {
+  header_title: "Choose Topic",
   header_options: [
     {
-      title: "Header Beginner",
-      url: "#",
+      title: "JavaScript Topics",
+      url: "/js",
       icon: BookOpen,
     },
     {
-      title: "Header Professional",
-      url: "#",
+      title: "React Topics",
+      url: "/react",
+      icon: Bot,
+    },
+    {
+      title: "HTML Topics",
+      url: "/html",
+      icon: Bot,
+    },
+    {
+      title: "CSS Topics",
+      url: "/css",
       icon: Bot,
     },
   ],
@@ -32,7 +43,7 @@ export const JAVASCRIPT_SIDEBAR = {
       icon: Map,
     },
   ],
-  footer_title: "Footer",
+  footer_title: "User",
   footer_icon: BookOpen,
   footer_options: [
     {
@@ -41,13 +52,13 @@ export const JAVASCRIPT_SIDEBAR = {
       icon: BookOpen,
     },
     {
-      title: "Settings",
-      url: "#",
+      title: "Login",
+      url: "/login",
       icon: Bot,
     },
     {
-      title: "Sign Out",
-      url: "#",
+      title: "Logout",
+      action: onLogoutUser,
       icon: Bot,
     },
   ],

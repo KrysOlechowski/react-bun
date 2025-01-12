@@ -1,15 +1,15 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { JS_Sidebar_Content } from "@/layout/js_sidebar/js_sidebar_content";
+import { Sidebar_Content } from "@/layout/sidebar/sidebar_content";
 
 type Props = {
   children?: React.ReactNode;
   isOpen?: boolean;
 };
 
-export default function JS_Sidebar({ children, isOpen = false }: Props) {
+export default function Sidebar({ children, isOpen = false }: Props) {
   return (
     <SidebarProvider>
-      <JS_Sidebar_Content isOpen={isOpen} />
+      <Sidebar_Content isOpen={isOpen} />
       <main>
         <SidebarTrigger />
         {children}
