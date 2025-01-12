@@ -34,13 +34,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { TopicsType } from "@/types/topics_types";
+import { LessonType, TopicsType } from "@/types/topics_types";
 
 type Props = {
   lessons: TopicsType;
+  onLessonClick: (lesson: LessonType) => void;
 };
 
-export const TopicsLayout = ({ lessons }: Props) => {
+export const TopicsLayout = ({ lessons, onLessonClick }: Props) => {
   return (
     <div className="mx-auto max-w-[500px] border-solid border-2 border-sky-500">
       <SidebarProvider>
@@ -132,9 +133,14 @@ export const TopicsLayout = ({ lessons }: Props) => {
                                     {sub_topic.lessons.map((lesson) => (
                                       <SidebarMenuSubItem key={lesson.title}>
                                         <SidebarMenuSubButton asChild>
-                                          <a href={lesson.url}>
+                                          <button
+                                            onClick={() =>
+                                              onLessonClick(lesson)
+                                            }
+                                            className="w-full"
+                                          >
                                             <span>{lesson.title}</span>
-                                          </a>
+                                          </button>
                                         </SidebarMenuSubButton>
                                       </SidebarMenuSubItem>
                                     ))}
