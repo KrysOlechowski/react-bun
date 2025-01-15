@@ -68,22 +68,13 @@ export const JAVASCRIPT_TOPICS = {
           url: "#",
           difficulty_level: 1,
           icon: SquareTerminal,
-          is_default_open: false,
+          is_default_open: true,
           is_open: false,
           is_lessons_started: false,
           lessons: [
             {
               index: "1.2.1.",
               title: "1.2.1. What's Boolean",
-              url: "*",
-              is_lesson_correct: false,
-              is_lesson_started: false,
-              icon: SquareTerminal,
-              difficulty_level: 1,
-            },
-            {
-              index: "1.2.2.",
-              title: "1.2.2. Boolean coercion",
               url: "*",
               is_lesson_correct: false,
               is_lesson_started: false,

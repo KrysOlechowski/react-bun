@@ -34,19 +34,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { LessonType, TopicsType } from "@/types/topics_types";
+import { TopicLessonType, TopicsType } from "@/types/topics_types";
 
 type Props = {
-  lessons: TopicsType;
-  onLessonClick: (lesson: LessonType) => void;
+  topics: TopicsType;
+  onTopicClick: (topic: TopicLessonType) => void;
 };
 
-export const TopicsLayout = ({ lessons, onLessonClick }: Props) => {
+export const TopicsLayout = ({ topics, onTopicClick }: Props) => {
   return (
     <div className="mx-auto max-w-[500px] border-solid border-2 border-sky-500">
       <SidebarProvider>
         <SidebarContent>
-          {lessons.topics.map((main_topic, i) => {
+          {topics.topics.map((main_topic, i) => {
             const progressValue = randomIntFromInterval(1, 100);
 
             return (
@@ -134,9 +134,7 @@ export const TopicsLayout = ({ lessons, onLessonClick }: Props) => {
                                       <SidebarMenuSubItem key={lesson.title}>
                                         <SidebarMenuSubButton asChild>
                                           <button
-                                            onClick={() =>
-                                              onLessonClick(lesson)
-                                            }
+                                            onClick={() => onTopicClick(lesson)}
                                             className="w-full"
                                           >
                                             <span>{lesson.title}</span>
