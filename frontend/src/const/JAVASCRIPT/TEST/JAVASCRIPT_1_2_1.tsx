@@ -23,11 +23,11 @@ export const JAVASCRIPT_1_2_1 = {
     ],
     questions: [
       {
-        main_title: "Are Boolean literals case sensitive?",
+        main_title: "Are Boolean literals case sensitive??",
         dissiculty: 1,
         question_index: 1,
         possible_answers: ["Yes", "No"],
-        correct_answer: ["Yes"],
+        correct_answer: "Yes",
         question_content_html: `<div className="x-question">
             <h1 className="x-title">Are Boolean literals case sensitive?</h1>
           </div>`,
@@ -41,7 +41,7 @@ export const JAVASCRIPT_1_2_1 = {
         dissiculty: 1,
         question_index: 2,
         possible_answers: ["Yes", "No"],
-        correct_answer: ["Yes"],
+        correct_answer: "Yes",
         question_content_html: `<div className="x-question">
             <h1 className="x-title">Is this statement true?</h1>
             <div className="x-code">
@@ -58,7 +58,7 @@ export const JAVASCRIPT_1_2_1 = {
         dissiculty: 1,
         question_index: 3,
         possible_answers: ["Yes", "No"],
-        correct_answer: ["Yes"],
+        correct_answer: "Yes",
         question_content_html: `<div className="x-question">
             <h1 className="x-title">What is the value of variable BOOL?</h1>
             <div>let obj = {}; let BOOL = Boolean(obj);</div>

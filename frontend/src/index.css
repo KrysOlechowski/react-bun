@@ -80,7 +80,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-.x-container {
-  border: 1px solid black;
-}
