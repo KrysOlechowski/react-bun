@@ -1,17 +1,18 @@
+import { LESSON_VIEW, useLessonStore } from "@/store/lesson/lesson";
 import { LessonType } from "@/types/lesson_types";
 
 type Props = {
   lesson: LessonType;
-  onQuestionsStart: () => void;
   onEndLessonClick: () => void;
 };
 
-export const MainScreenContent = ({
-  lesson,
-  onQuestionsStart,
-  onEndLessonClick,
-}: Props) => {
+export const MainScreenContent = ({ lesson, onEndLessonClick }: Props) => {
   const mainContent = lesson.content.main_screen_html;
+  const { set_current_lesson_view } = useLessonStore();
+  const onQuestionsStartClick = () => {
+    set_current_lesson_view(LESSON_VIEW.Question_Screen);
+  };
+
   return (
     <div className="z-40 w-full h-full bg-amber-300 fixed right-0 top-0 p-2.5">
       Lesson Overlay
@@ -40,7 +41,7 @@ export const MainScreenContent = ({
         eveniet cumque quasi, sint unde ducimus. Natus, provident dicta?
       </p>
       <div className="fixed bottom-0 left-0 p-2.5">
-        <button onClick={onQuestionsStart}>
+        <button onClick={onQuestionsStartClick}>
           Start questions:{lesson.content.questions.length}
         </button>
       </div>

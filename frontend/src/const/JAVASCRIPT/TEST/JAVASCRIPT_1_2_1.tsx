@@ -24,7 +24,7 @@ export const JAVASCRIPT_1_2_1 = {
     questions: [
       {
         main_title: "Are Boolean literals case sensitive??",
-        dissiculty: 1,
+        difficulty: 1,
         question_index: 1,
         possible_answers: ["Yes", "No"],
         correct_answer: "Yes",
@@ -38,7 +38,7 @@ export const JAVASCRIPT_1_2_1 = {
       },
       {
         main_title: "Is this statement true?",
-        dissiculty: 1,
+        difficulty: 1,
         question_index: 2,
         possible_answers: ["Yes", "No"],
         correct_answer: "Yes",
@@ -55,7 +55,7 @@ export const JAVASCRIPT_1_2_1 = {
       },
       {
         main_title: "What is the value of variable BOOL?",
-        dissiculty: 1,
+        difficulty: 1,
         question_index: 3,
         possible_answers: ["Yes", "No"],
         correct_answer: "Yes",

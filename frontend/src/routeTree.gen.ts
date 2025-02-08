@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as JsImport } from './routes/js'
+import { Route as DiceImport } from './routes/dice'
 import { Route as AdminImport } from './routes/admin'
 import { Route as IndexImport } from './routes/index'
 
@@ -27,6 +28,12 @@ const LoginRoute = LoginImport.update({
 const JsRoute = JsImport.update({
   id: '/js',
   path: '/js',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DiceRoute = DiceImport.update({
+  id: '/dice',
+  path: '/dice',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminImport
       parentRoute: typeof rootRoute
     }
+    '/dice': {
+      id: '/dice'
+      path: '/dice'
+      fullPath: '/dice'
+      preLoaderRoute: typeof DiceImport
+      parentRoute: typeof rootRoute
+    }
     '/js': {
       id: '/js'
       path: '/js'
@@ -82,6 +96,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/dice': typeof DiceRoute
   '/js': typeof JsRoute
   '/login': typeof LoginRoute
 }
@@ -89,6 +104,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/dice': typeof DiceRoute
   '/js': typeof JsRoute
   '/login': typeof LoginRoute
 }
@@ -97,22 +113,24 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/dice': typeof DiceRoute
   '/js': typeof JsRoute
   '/login': typeof LoginRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/js' | '/login'
+  fullPaths: '/' | '/admin' | '/dice' | '/js' | '/login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/js' | '/login'
-  id: '__root__' | '/' | '/admin' | '/js' | '/login'
+  to: '/' | '/admin' | '/dice' | '/js' | '/login'
+  id: '__root__' | '/' | '/admin' | '/dice' | '/js' | '/login'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  DiceRoute: typeof DiceRoute
   JsRoute: typeof JsRoute
   LoginRoute: typeof LoginRoute
 }
@@ -120,6 +138,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  DiceRoute: DiceRoute,
   JsRoute: JsRoute,
   LoginRoute: LoginRoute,
 }
@@ -136,6 +155,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/admin",
+        "/dice",
         "/js",
         "/login"
       ]
@@ -145,6 +165,9 @@ export const routeTree = rootRoute
     },
     "/admin": {
       "filePath": "admin.tsx"
+    },
+    "/dice": {
+      "filePath": "dice.tsx"
     },
     "/js": {
       "filePath": "js.tsx"

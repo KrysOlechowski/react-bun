@@ -1,6 +1,7 @@
 import { QuestionType } from "@/types/lesson_types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SingleQuestionContent } from "./SingleQuestionContent";
+import { LESSON_VIEW, useLessonStore } from "@/store/lesson/lesson";
 
 type Props = {
   questions: QuestionType[];
@@ -17,28 +18,50 @@ export const QuestionsScreenContent = ({
   onEndAllQuestionsCorrect,
 }: Props) => {
   //TODO: 'questions' pobierać z useLessonStore
-  console.log({ questions });
+  //   console.log({ questions });
 
-  const numberOfLessons = questions.length;
-  const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
-  const [questionIndex, setQuestionIndex] = useState(0);
+  const [current_question_index, set_current_question_index] = useState(0);
 
-  const isAllQuestionsDone =
-    numberOfCorrectAnswers >= numberOfLessons ? true : false;
-  if (isAllQuestionsDone) {
-    onEndAllQuestionsCorrect();
-  }
-  const currentQuestion = isAllQuestionsDone ? null : questions[questionIndex];
+  const {
+    number_of_correct_questions,
+    number_of_questions,
+    set_number_of_questions,
+    wrong_questions_list,
+    set_current_lesson_view,
+    current_question,
+    set_current_question,
+    set_questions_list,
+  } = useLessonStore();
+
+  useEffect(() => {
+    if (!current_question) {
+      set_current_question(questions[0]);
+      set_number_of_questions(questions.length);
+    }
+  }, [current_question]);
 
   const onNextQuestionClick = (isCorrect: boolean, questionIndex: string) => {
     console.log(isCorrect);
     console.log(questionIndex);
   };
-  if (currentQuestion) {
+
+  const goToNextStep = (is_correct: boolean) => {
+    if (
+      number_of_correct_questions === number_of_questions &&
+      wrong_questions_list?.length === 0
+    ) {
+      set_current_lesson_view(LESSON_VIEW.End_Screen);
+    }
+  };
+
+  if (current_question) {
     return (
       <div className="z-40 w-full h-full bg-amber-300 fixed right-0 top-0 p-2.5 ">
         <div className="p-10 border-solid border-4 border-green-200">
-          <SingleQuestionContent question={currentQuestion} />
+          <SingleQuestionContent
+            question={current_question}
+            goToNextStep={goToNextStep}
+          />
         </div>
         <div className="fixed bottom-0 left-0">
           <button
