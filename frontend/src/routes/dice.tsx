@@ -1,4 +1,4 @@
-import { Dice } from "@/components/dice/dice";
+import { DiceContainer } from "@/components/dice/dice_container";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/dice")({
@@ -6,17 +6,9 @@ export const Route = createFileRoute("/dice")({
 });
 
 function RouteComponent() {
-  const fake_dice = [
-    { type: "ATTACK", power: null },
-    { type: "ATTACK", power: null },
-    { type: "SHIELD", power: null },
-    { type: "SHIELD", power: null },
-    { type: "MAGIC", power: null },
-    { type: "MAGIC", power: null },
-  ];
   return (
     <div>
-      <Dice tiles={fake_dice} />
+      <DiceContainer />
     </div>
   );
 }

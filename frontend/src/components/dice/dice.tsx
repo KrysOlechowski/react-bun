@@ -1,44 +1,46 @@
+import { useDiceStore } from "@/store/dice/dice_store";
+import { DICE_VALUE_TYPE } from "@/types/dice_types";
 import { useEffect, useState } from "react";
 
-type Tile = { type: string };
-
 type Props = {
-  tiles: Tile[];
+  dice: DICE_VALUE_TYPE[];
 };
 
-export const Dice = ({ tiles }: Props) => {
-  const [number_of_rolls, set_number_of_rolls] = useState(0);
-  const [prev_tile, set_prev_tile] = useState<Tile | null>(null);
-  const [current_tile, set_current_tile] = useState<Tile | null>(null);
-  const randomTile = tiles[Math.floor(Math.random() * tiles.length)];
+export const Dice = ({ dice }: Props) => {
+  const [prevRolledTile, setPrevRolledTile] = useState<null | DICE_VALUE_TYPE>(
+    null
+  );
+  const [rolledTile, setRolledTile] = useState<null | DICE_VALUE_TYPE>(null);
+  const { number_of_rolls } = useDiceStore();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (number_of_rolls === 0) {
+      setPrevRolledTile(null);
+      setRolledTile(null);
+      return;
+    }
+    const prevTile = rolledTile;
+    const randomTile = dice[Math.floor(Math.random() * dice.length)];
 
-  const onDiceRoll = () => {
-    if (!prev_tile) {
-      set_current_tile(randomTile);
+    if (!rolledTile) {
+      setRolledTile(randomTile);
+      return;
     }
-    if (current_tile) {
-      set_prev_tile(current_tile);
-      set_current_tile(randomTile);
-    }
-    set_number_of_rolls((prev) => prev + 1);
-  };
+    setPrevRolledTile(prevTile);
+    setRolledTile(randomTile);
+  }, [number_of_rolls]);
 
   return (
-    <div className="">
-      <button
-        onClick={onDiceRoll}
-        className="fixed p-2.5 bottom-80 left-80 border-4 border-gray-600"
-      >
-        Roll The Dice: {number_of_rolls}
-      </button>
+    <div className="relative border-red-400 border-4">
       <div className="flex p-2.5 border-solid border-4 border-gray-600">
         <h1>All tiles:</h1>
-        {tiles.map((tile) => {
+        {dice.map((tile, i) => {
           return (
-            <div className="w-24 h-24 p-2.5 border-solid border-4 border-gray-600">
-              {tile.type}
+            <div
+              key={`${tile.name}${i}`}
+              className="w-24 h-24 p-2.5 border-solid border-4 border-gray-600"
+            >
+              {tile.name}
             </div>
           );
         })}
@@ -47,10 +49,10 @@ export const Dice = ({ tiles }: Props) => {
       <div className="flex">
         <div>
           <h1>Previous tile:</h1>
-          {prev_tile ? (
+          {prevRolledTile ? (
             <div>
               <div className="w-24 h-24 p-2.5 border-solid border-4 border-gray-600">
-                {prev_tile.type}
+                {prevRolledTile.name}
               </div>
             </div>
           ) : (
@@ -61,7 +63,7 @@ export const Dice = ({ tiles }: Props) => {
         </div>
         <div>
           <h1>Current tile:</h1>
-          {current_tile ? (
+          {rolledTile ? (
             <div className="border-solid border-4 border-rose-600">
               <div className="border-solid border-4 border-rose-500">
                 <div className="border-solid border-4 border-rose-400">
@@ -69,9 +71,7 @@ export const Dice = ({ tiles }: Props) => {
                     <div className="border-solid border-4 border-purple-500">
                       <div className="border-solid border-4 border-purple-400">
                         <div>
-                          <div className="w-24 h-24 p-2">
-                            {current_tile.type}
-                          </div>
+                          <div className="w-24 h-24 p-2">{rolledTile.name}</div>
                         </div>
                       </div>
                     </div>
