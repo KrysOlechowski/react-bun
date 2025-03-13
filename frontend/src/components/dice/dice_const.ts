@@ -1,44 +1,50 @@
-export const DEFAULT_USER_DICE1 = [
-  { index: 0, value: 1, name: "ATTACK" },
-  { index: 1, value: 1, name: "ATTACK" },
-  { index: 2, value: 1, name: "ATTACK" },
-  { index: 3, value: 1, name: "ATTACK" },
-  { index: 4, value: 1, name: "DEFENCE" },
-  { index: 5, value: 1, name: "MAGIC" },
-];
-
-export const DEFAULT_USER_DICE2 = [
-  { index: 0, value: 1, name: "DEFENCE" },
-  { index: 1, value: 1, name: "DEFENCE" },
-  { index: 2, value: 1, name: "DEFENCE" },
-  { index: 3, value: 1, name: "DEFENCE" },
-  { index: 4, value: 1, name: "ATTACK" },
-  { index: 5, value: 1, name: "MAGIC" },
-];
-
-export const DEFAULT_USER_DICE3 = [
-  { index: 0, value: 1, name: "MAGIC" },
-  { index: 1, value: 1, name: "MAGIC" },
-  { index: 2, value: 1, name: "MAGIC" },
-  { index: 3, value: 1, name: "MAGIC" },
-  { index: 4, value: 1, name: "DEFENCE" },
-  { index: 5, value: 1, name: "ATTACK" },
-];
-
-export const DEFAULT_USER_DICE4 = [
-  { index: 0, value: 1, name: "ATTACK" },
-  { index: 1, value: 1, name: "ATTACK" },
-  { index: 2, value: 1, name: "DEFENCE" },
-  { index: 3, value: 1, name: "DEFENCE" },
-  { index: 4, value: 1, name: "MAGIC" },
-  { index: 5, value: 1, name: "MAGIC" },
-];
-
-export const DEFAULT_USER_DICE5 = [
-  { index: 0, value: 1, name: "ATTACK" },
-  { index: 1, value: 1, name: "ATTACK" },
-  { index: 2, value: 1, name: "DEFENCE" },
-  { index: 3, value: 1, name: "DEFENCE" },
-  { index: 4, value: 1, name: "MAGIC" },
-  { index: 5, value: 1, name: "MAGIC" },
+export const USER_DICES = [
+  {
+    index: 0,
+    type: "ATTACK",
+    name: "ATTACK",
+    attack_value: 4,
+    defense_value: 0,
+    magic_value: 0,
+    values: [
+      { index: 0, value: 1, name: "ATTACK", max: 3 },
+      { index: 1, value: 1, name: "ATTACK", max: 3 },
+      { index: 2, value: 1, name: "ATTACK", max: 3 },
+      { index: 3, value: 1, name: "ATTACK", max: 3 },
+      { index: 4, value: 0, name: "ATTACK", max: 3 },
+      { index: 5, value: 0, name: "ATTACK", max: 3 },
+    ],
+  },
+  {
+    index: 1,
+    type: "DEFENSE",
+    name: "DEFENSE",
+    attack_value: 0,
+    defense_value: 6,
+    magic_value: 0,
+    values: [
+      { index: 0, value: 2, name: "DEFENSE", max: 3 },
+      { index: 1, value: 2, name: "DEFENSE", max: 3 },
+      { index: 2, value: 1, name: "DEFENSE", max: 3 },
+      { index: 3, value: 1, name: "DEFENSE", max: 3 },
+      { index: 4, value: 0, name: "DEFENSE", max: 3 },
+      { index: 5, value: 0, name: "DEFENSE", max: 3 },
+    ],
+  },
+  {
+    index: 2,
+    type: "MAGIC",
+    name: "MAGIC",
+    attack_value: 0,
+    defense_value: 0,
+    magic_value: 4,
+    values: [
+      { index: 0, value: 2, name: "MAGIC", max: 3 },
+      { index: 1, value: 2, name: "MAGIC", max: 3 },
+      { index: 2, value: 0, name: "MAGIC", max: 3 },
+      { index: 3, value: 0, name: "MAGIC", max: 3 },
+      { index: 4, value: 0, name: "MAGIC", max: 3 },
+      { index: 5, value: 0, name: "MAGIC", max: 3 },
+    ],
+  },
 ];

@@ -1,18 +1,24 @@
 import { useDiceStore } from "@/store/dice/dice_store";
-import { DICE_VALUE_TYPE } from "@/types/dice_types";
+import { DICE_VALUE_TYPE, DICE_VALUES_TILES } from "@/types/dice_types";
 import { useEffect, useState } from "react";
 import { DiceTileView } from "./dice_tile_view";
 
 type Props = {
-  dice: DICE_VALUE_TYPE[];
+  dice: DICE_VALUE_TYPE;
 };
 
 export const Dice = ({ dice }: Props) => {
   const [prevRolledTiles, setPrevRolledTiles] = useState<
-    null | DICE_VALUE_TYPE[]
+    null | DICE_VALUES_TILES[]
   >(null);
-  const [rolledTile, setRolledTile] = useState<null | DICE_VALUE_TYPE>(null);
-  const { number_of_rolls, is_test_mode } = useDiceStore();
+  const [rolledTile, setRolledTile] = useState<null | DICE_VALUES_TILES>(null);
+  const {
+    number_of_rolls,
+    is_test_mode,
+    inc_number_of_attack,
+    inc_number_of_defense,
+    inc_number_of_magic,
+  } = useDiceStore();
 
   useEffect(() => {
     if (number_of_rolls === 0) {
@@ -20,7 +26,21 @@ export const Dice = ({ dice }: Props) => {
       setRolledTile(null);
       return;
     }
-    const randomTile = dice[Math.floor(Math.random() * dice.length)];
+    const randomTile =
+      dice.values[Math.floor(Math.random() * dice.values.length)];
+    if (randomTile.name === "ATTACK" && randomTile.value > 0) {
+      console.log("INC ATTACK");
+      inc_number_of_attack(randomTile.value);
+    }
+    if (randomTile.name === "DEFENSE" && randomTile.value > 0) {
+      console.log("INC DEFENSE");
+      inc_number_of_defense(randomTile.value);
+    }
+    if (randomTile.name === "MAGIC" && randomTile.value > 0) {
+      console.log("INC MAGIC");
+
+      inc_number_of_magic(randomTile.value);
+    }
 
     if (!rolledTile) {
       setRolledTile(randomTile);
@@ -61,8 +81,12 @@ export const Dice = ({ dice }: Props) => {
           <div>
             <h1>Previous tile:</h1>
             {prevRolledTiles ? (
-              prevRolledTiles.map((tile) => (
-                <DiceTileView tile={tile} type="small" />
+              prevRolledTiles.map((tile, i) => (
+                <DiceTileView
+                  key={`${tile.name}-${i}`}
+                  tile={tile}
+                  type="small"
+                />
               ))
             ) : (
               <EmptyDiceTileView />
@@ -71,7 +95,7 @@ export const Dice = ({ dice }: Props) => {
 
           <div>
             <div>Dice Tiles:</div>
-            {dice.map((tile, i) => {
+            {dice.values.map((tile, i) => {
               return (
                 <DiceTileView
                   key={`${tile.name}${i}`}

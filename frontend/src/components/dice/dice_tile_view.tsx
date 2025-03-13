@@ -1,21 +1,21 @@
-import { DICE_VALUE_TYPE } from "@/types/dice_types";
+import { DICE_VALUES_TILES } from "@/types/dice_types";
 
 type Props = {
-  tile: DICE_VALUE_TYPE;
+  tile: DICE_VALUES_TILES;
   type?: "small" | "normal";
 };
 
 const getTileColor = (name: string) => {
   if (name === "ATTACK") return "bg-red-500";
-  if (name === "DEFENCE") return "bg-blue-500";
-  return "bg-violet-500";
+  if (name === "DEFENSE") return "bg-blue-500";
+  if (name === "MAGIC") return "bg-violet-500";
+
+  return "bg-slate-300";
 };
 
 export const DiceTileView = ({ tile, type = "normal" }: Props) => {
   const tileColor = getTileColor(tile.name);
   const tileSize = type === "small" ? "10" : "20";
-
-  console.log(tileColor);
 
   return (
     <div
