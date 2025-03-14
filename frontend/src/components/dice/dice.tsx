@@ -63,6 +63,8 @@ export const Dice = ({ dice }: Props) => {
     setRolledTile(randomTile);
   }, [number_of_rolls]);
 
+  console.log(dice.type);
+
   return (
     <div className="p-1 relative border-red-400 border-2">
       <div className="flex">
@@ -71,7 +73,7 @@ export const Dice = ({ dice }: Props) => {
           {rolledTile ? (
             <DiceTileView tile={rolledTile} />
           ) : (
-            <EmptyDiceTileView />
+            <EmptyDiceTileView type={dice.type} />
           )}
         </div>
       </div>
@@ -89,7 +91,7 @@ export const Dice = ({ dice }: Props) => {
                 />
               ))
             ) : (
-              <EmptyDiceTileView />
+              <EmptyDiceTileView type={dice.type} />
             )}
           </div>
 
@@ -111,7 +113,8 @@ export const Dice = ({ dice }: Props) => {
   );
 };
 
-const EmptyDiceTileView = () => {
+const EmptyDiceTileView = (tile_type: any) => {
+  console.log(tile_type.type);
   return (
     <div className="m-1 relative w-20 h-20 p-1 border-solid border-2 border-black rounded-sm">
       <div className={`h-full p-2`}>X</div>

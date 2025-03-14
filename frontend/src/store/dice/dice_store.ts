@@ -1,5 +1,5 @@
 import { USER_DICES } from "@/components/dice/dice_const";
-import { DICE_VALUE_TYPE } from "@/types/dice_types";
+import { DICE_TILES_ENUM, DICE_VALUE_TYPE } from "@/types/dice_types";
 import { create } from "zustand";
 
 interface useDiceStore_Type {
@@ -8,8 +8,13 @@ interface useDiceStore_Type {
   number_of_rolls: number;
   increment_number_of_rolls: () => void;
   reset_number_of_rolls: () => void;
+
   dices: DICE_VALUE_TYPE[] | [];
+  used_dices: DICE_VALUE_TYPE[] | [];
+
   set_dices: (dices: DICE_VALUE_TYPE[]) => void;
+  set_used_dices: (dices: DICE_VALUE_TYPE[]) => void;
+
   reset_dices: () => void;
 
   number_of_attack: number;
@@ -29,8 +34,14 @@ export const useDiceStore = create<useDiceStore_Type>((set) => ({
   increment_number_of_rolls: () =>
     set((state) => ({ number_of_rolls: state.number_of_rolls + 1 })),
   reset_number_of_rolls: () => set({ number_of_rolls: 0 }),
+
   dices: USER_DICES,
+  used_dices: [],
+
   set_dices: (newDices: DICE_VALUE_TYPE[]) => set({ dices: newDices }),
+  set_used_dices: (newDices: DICE_VALUE_TYPE[]) =>
+    set({ used_dices: newDices }),
+
   reset_dices: () => set({ dices: [] }),
 
   number_of_attack: 0,

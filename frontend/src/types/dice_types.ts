@@ -1,20 +1,22 @@
-export enum DICE_TILES_TYPES {
+export enum DICE_TILES_ENUM {
   ATTACK = "ATTACK",
-  SHIELD = "SHIELD",
+  DEFENSE = "DEFENSE",
   MAGIC = "MAGIC",
 }
+
+export type DICE_TILES_TYPE = keyof typeof DICE_TILES_ENUM;
 
 export type DICE_VALUES_TILES = {
   index: number;
   value: number;
-  name: string;
+  name: DICE_TILES_TYPE;
   max: number;
 };
 
 export type DICE_VALUE_TYPE = {
   index: number;
-  type: string;
-  name: string;
+  type: DICE_TILES_ENUM;
+  name: DICE_TILES_ENUM;
   attack_value: number;
   defense_value: number;
   magic_value: number;
