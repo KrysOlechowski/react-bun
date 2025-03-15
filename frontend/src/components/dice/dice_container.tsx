@@ -14,6 +14,7 @@ import {
   DEFAULT_DEFENSE_DICE,
   DEFAULT_MAGIC_DICE,
 } from "./dice_const";
+import { DiceUsedContainer } from "./dice_used_container";
 
 export const DiceContainer = () => {
   const {
@@ -64,6 +65,7 @@ export const DiceContainer = () => {
   return (
     <>
       <DiceTestView />
+      <DiceUsedContainer />
       <div className="p-2 flex">
         <DiceContainerV2
           containerType={DICE_TILES_ENUM.ATTACK}

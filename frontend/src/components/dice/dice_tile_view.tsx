@@ -23,7 +23,7 @@ export const DiceTileView = ({ tile, type = "normal" }: Props) => {
     >
       <div className={`h-full p-2 ${tileColor}`}>{tile.value}</div>
 
-      <div className="hidden z-50 p-2 absolute left-0 top-0 text-[12px] opacity-0 hover:opacity-100 hover:bg-violet-300">
+      <div className=" z-50 p-2 absolute left-0 top-0 text-[12px] opacity-0 hover:opacity-100 hover:bg-violet-300">
         <div className="whitespace-nowrap">
           <span>Index: {tile.index}</span>
         </div>

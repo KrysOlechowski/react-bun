@@ -10,23 +10,32 @@ interface useDiceStore_Type {
   // ATTACK:
   default_attack_dice: typeof DEFAULT_ATTACK_DICE;
   number_of_attack_dices: number;
+
   attack_dices: DICE_VALUE_TYPE[];
   set_attack_dices: (dices: DICE_VALUE_TYPE[]) => void;
+
   used_attack_dices: null | DICE_VALUE_TYPE[];
+  set_used_attack_dices: (dices: DICE_VALUE_TYPE[]) => void;
 
   // DEFENSE:
   default_defense_dice: typeof DEFAULT_ATTACK_DICE;
   number_of_defense_dices: number;
+
   defense_dices: DICE_VALUE_TYPE[];
   set_defense_dices: (dices: DICE_VALUE_TYPE[]) => void;
+
   used_defense_dices: null | DICE_VALUE_TYPE[];
+  set_used_defense_dices: (dices: DICE_VALUE_TYPE[]) => void;
 
   // MAGIC:
   default_magic_dice: typeof DEFAULT_ATTACK_DICE;
   number_of_magic_dices: number;
+
   magic_dices: DICE_VALUE_TYPE[];
   set_magic_dices: (dices: DICE_VALUE_TYPE[]) => void;
+
   used_magic_dices: null | DICE_VALUE_TYPE[];
+  set_used_magic_dices: (dices: DICE_VALUE_TYPE[]) => void;
 
   // HERO:
   default_hero_dice: null;
@@ -42,24 +51,34 @@ export const useDiceStoreV2 = create<useDiceStore_Type>((set) => ({
   attack_dices: [DEFAULT_ATTACK_DICE],
   set_attack_dices: (newDices: DICE_VALUE_TYPE[]) =>
     set({ attack_dices: newDices }),
+
   used_attack_dices: null,
+  set_used_attack_dices: (newDices: DICE_VALUE_TYPE[]) =>
+    set({ used_attack_dices: newDices }),
 
   // DEFENSE:
   default_defense_dice: DEFAULT_DEFENSE_DICE,
   number_of_defense_dices: 1,
+
   defense_dices: [DEFAULT_DEFENSE_DICE],
   set_defense_dices: (newDices: DICE_VALUE_TYPE[]) =>
     set({ defense_dices: newDices }),
+
   used_defense_dices: null,
+  set_used_defense_dices: (newDices: DICE_VALUE_TYPE[]) =>
+    set({ used_defense_dices: newDices }),
 
   // MAGIC:
   default_magic_dice: DEFAULT_MAGIC_DICE,
   number_of_magic_dices: 1,
+
   magic_dices: [DEFAULT_MAGIC_DICE],
   set_magic_dices: (newDices: DICE_VALUE_TYPE[]) =>
     set({ magic_dices: newDices }),
-  used_magic_dices: null,
 
+  used_magic_dices: null,
+  set_used_magic_dices: (newDices: DICE_VALUE_TYPE[]) =>
+    set({ used_magic_dices: newDices }),
   // HERO:
   default_hero_dice: null,
   number_of_hero_dices: 1,

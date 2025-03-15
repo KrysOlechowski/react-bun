@@ -69,12 +69,12 @@ export const Dice = ({ dice }: Props) => {
     <div className="p-1 relative border-red-400 border-2">
       <div className="flex">
         <div>
-          <h1>Current Value:</h1>
           {rolledTile ? (
             <DiceTileView tile={rolledTile} />
           ) : (
             <EmptyDiceTileView type={dice.type} />
           )}
+          <span>Dice Index: {dice.index}</span>
         </div>
       </div>
 
