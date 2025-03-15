@@ -5,16 +5,16 @@ export const DiceUsedContainer = () => {
     useDiceStoreV2();
 
   return (
-    <div className="flex p-2 w-full h-40 border-gray-600 border-2">
+    <div className="flex p-2 w-full h-80 border-gray-600 border-2">
       <div className="m-2 w-full border-red-400 border-2">
         <h1>Attack</h1>
         <div>
           {used_attack_dices?.map((dice) => {
             return (
-              <h3 key={dice.type + dice.index}>
-                <div>Dice Index - {dice.index} </div>
-                <div>Dice Rolled Value - {dice.rolled_value}</div>
-              </h3>
+              <div className="flex" key={dice.type + dice.index}>
+                <div>Index - {dice.index} </div>
+                <div>- Value - {dice.rolled_value}</div>
+              </div>
             );
           })}
         </div>
@@ -24,10 +24,10 @@ export const DiceUsedContainer = () => {
         <div>
           {used_defense_dices?.map((dice) => {
             return (
-              <h3 key={dice.type + dice.index}>
-                <div>Dice Index - {dice.index} </div>
-                <div>Dice Rolled Value - {dice.rolled_value}</div>
-              </h3>
+              <div className="flex" key={dice.type + dice.index}>
+                <div>Index - {dice.index} </div>
+                <div>- Value - {dice.rolled_value}</div>
+              </div>
             );
           })}
         </div>
@@ -38,10 +38,10 @@ export const DiceUsedContainer = () => {
         <div>
           {used_magic_dices?.map((dice) => {
             return (
-              <h3 key={dice.type + dice.index}>
-                <div>Dice Index - {dice.index} </div>
-                <div>Dice Rolled Value - {dice.rolled_value}</div>
-              </h3>
+              <div className="flex" key={dice.type + dice.index}>
+                <div>Index - {dice.index} </div>
+                <div>- Value - {dice.rolled_value}</div>
+              </div>
             );
           })}
         </div>
