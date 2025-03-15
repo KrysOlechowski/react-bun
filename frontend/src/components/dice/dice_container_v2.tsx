@@ -5,7 +5,8 @@ import {
   DICE_VALUE_TYPE,
 } from "@/types/dice_types";
 import { Dice } from "./dice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getShuffledArrayItems } from "@/utils/arrays";
 
 type Props = {
   containerType: DICE_TILES_TYPE;
@@ -14,40 +15,128 @@ type Props = {
 };
 
 export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
-  const [isDisable, setIsDisable] = useState(false);
+  const [is_button_active, set_is_button_active] = useState(true);
   const {
+    attack_dices,
     used_attack_dices,
     set_used_attack_dices,
+
+    defense_dices,
     used_defense_dices,
     set_used_defense_dices,
+
+    magic_dices,
     used_magic_dices,
     set_used_magic_dices,
+
+    is_reset_used_dices,
+    set_reset_all_used_dices,
   } = useDiceStoreV2();
+
+  useEffect(() => {
+    if (is_reset_used_dices) {
+      set_is_button_active(true);
+      set_temp_used_attack_dices(null);
+      set_temp_used_defense_dices(null);
+      set_temp_used_magic_dices(null);
+
+      set_reset_all_used_dices(false);
+    }
+  }, [is_reset_used_dices]);
+
+  const [temp_used_attack_dices, set_temp_used_attack_dices] = useState<
+    null | DICE_VALUE_TYPE[]
+  >(null);
+  const [temp_used_defense_dices, set_temp_used_defense_dices] = useState<
+    null | DICE_VALUE_TYPE[]
+  >(null);
+  const [temp_used_magic_dices, set_temp_used_magic_dices] = useState<
+    null | DICE_VALUE_TYPE[]
+  >(null);
 
   const number_of_dices = dices.length;
 
   const onRollDice = () => {
     if (containerType === DICE_TILES_ENUM.ATTACK) {
-      if (number_of_dices === 1) {
-        set_used_attack_dices([dices[0]]);
-      }
-      if (number_of_dices === used_attack_dices?.length) {
-        setIsDisable(true);
+      if (!temp_used_attack_dices) {
+        const copiedArray = [...attack_dices];
+        const shuffledArray = getShuffledArrayItems(copiedArray);
+        const randomFromShuffled = shuffledArray.pop();
+
+        set_temp_used_attack_dices(shuffledArray);
+        randomFromShuffled && set_used_attack_dices([randomFromShuffled]);
+      } else {
+        const copiedArray = used_attack_dices ? [...used_attack_dices] : [];
+        const copiedTempArray = [...temp_used_attack_dices];
+
+        const randomFromShuffled = copiedTempArray.pop();
+
+        set_temp_used_attack_dices(copiedTempArray);
+        randomFromShuffled &&
+          set_used_attack_dices([...copiedArray, randomFromShuffled]);
       }
     }
     if (containerType === DICE_TILES_ENUM.DEFENSE) {
-      if (number_of_dices === 1) {
-        set_used_defense_dices([dices[0]]);
+      if (!temp_used_defense_dices) {
+        const copiedArray = [...defense_dices];
+        const shuffledArray = getShuffledArrayItems(copiedArray);
+        const randomFromShuffled = shuffledArray.pop();
+
+        set_temp_used_defense_dices(shuffledArray);
+        randomFromShuffled && set_used_defense_dices([randomFromShuffled]);
+      } else {
+        const copiedArray = used_defense_dices ? [...used_defense_dices] : [];
+        const copiedTempArray = [...temp_used_defense_dices];
+
+        const randomFromShuffled = copiedTempArray.pop();
+
+        set_temp_used_defense_dices(copiedTempArray);
+        randomFromShuffled &&
+          set_used_defense_dices([...copiedArray, randomFromShuffled]);
       }
     }
     if (containerType === DICE_TILES_ENUM.MAGIC) {
-      if (number_of_dices === 1) {
-        set_used_magic_dices([dices[0]]);
+      if (!temp_used_magic_dices) {
+        const copiedArray = [...magic_dices];
+        const shuffledArray = getShuffledArrayItems(copiedArray);
+        const randomFromShuffled = shuffledArray.pop();
+
+        set_temp_used_magic_dices(shuffledArray);
+        randomFromShuffled && set_used_magic_dices([randomFromShuffled]);
+      } else {
+        const copiedArray = used_magic_dices ? [...used_magic_dices] : [];
+        const copiedTempArray = [...temp_used_magic_dices];
+
+        const randomFromShuffled = copiedTempArray.pop();
+
+        set_temp_used_magic_dices(copiedTempArray);
+        randomFromShuffled &&
+          set_used_magic_dices([...copiedArray, randomFromShuffled]);
       }
     }
   };
 
-  console.log(dices);
+  if (
+    number_of_dices === used_attack_dices?.length &&
+    is_button_active &&
+    containerType === DICE_TILES_ENUM.ATTACK
+  ) {
+    set_is_button_active(false);
+  }
+  if (
+    number_of_dices === used_defense_dices?.length &&
+    is_button_active &&
+    containerType === DICE_TILES_ENUM.DEFENSE
+  ) {
+    set_is_button_active(false);
+  }
+  if (
+    number_of_dices === used_magic_dices?.length &&
+    is_button_active &&
+    containerType === DICE_TILES_ENUM.MAGIC
+  ) {
+    set_is_button_active(false);
+  }
 
   return (
     <div className="w-[33%]">
@@ -58,9 +147,13 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
       </div>
 
       <div className="absolute p-2 ">
-        <button className="border-red-100 border-2 m-2" onClick={onRollDice}>
-          Roll {containerType} Dice
-        </button>
+        {is_button_active ? (
+          <button className="border-red-100 border-2 m-2" onClick={onRollDice}>
+            Roll {containerType} Dice
+          </button>
+        ) : (
+          <button>NO POWER</button>
+        )}
         <button
           className="border-red-100 border-2 m-2"
           onClick={() => onAddDice(containerType)}

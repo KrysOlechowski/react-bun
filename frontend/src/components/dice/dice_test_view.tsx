@@ -1,4 +1,5 @@
 import { useDiceStore } from "@/store/dice/dice_store";
+import { useDiceStoreV2 } from "@/store/dice/dice_store_v2";
 
 export const DiceTestView = () => {
   const {
@@ -11,6 +12,8 @@ export const DiceTestView = () => {
     number_of_magic,
     reset_stats,
   } = useDiceStore();
+
+  const { set_reset_all_used_dices } = useDiceStoreV2();
 
   return (
     <>
@@ -40,10 +43,10 @@ export const DiceTestView = () => {
           Test Mode
         </button>
         <button
-          onClick={toggle_test_mode}
+          onClick={() => set_reset_all_used_dices(true)}
           className="m-1 p-2.5 top-1 left-80 border-4 border-gray-600"
         >
-          Test Mode
+          Reset Dices
         </button>
       </div>
 

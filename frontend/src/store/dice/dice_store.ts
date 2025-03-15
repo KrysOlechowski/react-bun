@@ -27,7 +27,7 @@ interface useDiceStore_Type {
 }
 
 export const useDiceStore = create<useDiceStore_Type>((set) => ({
-  is_test_mode: true,
+  is_test_mode: false,
   toggle_test_mode: () =>
     set((state) => ({ is_test_mode: !state.is_test_mode })),
   number_of_rolls: 0,

@@ -23,7 +23,7 @@ export const DiceUsedContainer = () => {
         <div>
           {used_defense_dices?.map((dice) => {
             return (
-              <h3>
+              <h3 key={dice.type + dice.index}>
                 {dice.attack_value} - {dice.index}{" "}
               </h3>
             );
@@ -36,7 +36,7 @@ export const DiceUsedContainer = () => {
         <div>
           {used_magic_dices?.map((dice) => {
             return (
-              <h3>
+              <h3 key={dice.type + dice.index}>
                 {dice.attack_value} - {dice.index}{" "}
               </h3>
             );

@@ -1,11 +1,4 @@
-import { useDiceStore } from "@/store/dice/dice_store";
-import { Dice } from "./dice";
-
-import {
-  DICE_TILES_ENUM,
-  DICE_TILES_TYPE,
-  DICE_VALUE_TYPE,
-} from "@/types/dice_types";
+import { DICE_TILES_ENUM, DICE_TILES_TYPE } from "@/types/dice_types";
 import { useDiceStoreV2 } from "@/store/dice/dice_store_v2";
 import { DiceContainerV2 } from "./dice_container_v2";
 import { DiceTestView } from "./dice_test_view";
@@ -18,28 +11,16 @@ import { DiceUsedContainer } from "./dice_used_container";
 
 export const DiceContainer = () => {
   const {
-    default_attack_dice,
-    number_of_attack_dices,
     attack_dices,
     set_attack_dices,
-    used_attack_dices,
 
-    default_defense_dice,
-    number_of_defense_dices,
     defense_dices,
     set_defense_dices,
-    used_defense_dices,
 
-    default_magic_dice,
-    number_of_magic_dices,
     magic_dices,
     set_magic_dices,
-    used_magic_dices,
 
-    default_hero_dice,
-    number_of_hero_dices,
-    hero_dices,
-    used_hero_dices,
+    set_reset_all_used_dices,
   } = useDiceStoreV2();
 
   const onFightStart = () => {
@@ -47,6 +28,7 @@ export const DiceContainer = () => {
   };
 
   const onAddDice = (type: DICE_TILES_TYPE) => {
+    set_reset_all_used_dices(true);
     if (type === DICE_TILES_ENUM.ATTACK) {
       const newDice = { ...DEFAULT_ATTACK_DICE, index: attack_dices.length };
       set_attack_dices([...attack_dices, newDice]);

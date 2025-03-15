@@ -42,6 +42,10 @@ interface useDiceStore_Type {
   number_of_hero_dices: number;
   hero_dices: null | DICE_VALUE_TYPE[];
   used_hero_dices: null | DICE_VALUE_TYPE[];
+
+  // GENERAL:
+  is_reset_used_dices: boolean;
+  set_reset_all_used_dices: (bool: boolean) => void;
 }
 
 export const useDiceStoreV2 = create<useDiceStore_Type>((set) => ({
@@ -84,6 +88,15 @@ export const useDiceStoreV2 = create<useDiceStore_Type>((set) => ({
   number_of_hero_dices: 1,
   hero_dices: null,
   used_hero_dices: null,
+  // GENERAL:
+  is_reset_used_dices: false,
+  set_reset_all_used_dices: (bool: boolean) =>
+    set({
+      used_attack_dices: null,
+      used_defense_dices: null,
+      used_magic_dices: null,
+      is_reset_used_dices: bool,
+    }),
 }));
 
 // number_of_magic: 0,
