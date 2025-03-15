@@ -7,6 +7,7 @@ import {
 import { Dice } from "./dice";
 import { useEffect, useState } from "react";
 import { getShuffledArrayItems } from "@/utils/arrays";
+import { useDiceStore } from "@/store/dice/dice_store";
 
 type Props = {
   containerType: DICE_TILES_TYPE;
@@ -16,6 +17,9 @@ type Props = {
 
 export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
   const [is_button_active, set_is_button_active] = useState(true);
+
+  const { inc_number_of_attack, inc_number_of_defense, inc_number_of_magic } =
+    useDiceStore();
   const {
     attack_dices,
     used_attack_dices,
@@ -77,6 +81,7 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
               rolled_value: randomTile?.value,
             },
           ]);
+        inc_number_of_attack(randomTile?.value || 999);
       } else {
         const copiedArray = used_attack_dices ? [...used_attack_dices] : [];
         const copiedTempArray = [...temp_used_attack_dices];
@@ -95,6 +100,7 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
             ...copiedArray,
             { ...randomFromShuffled, rolled_value: randomTile?.value },
           ]);
+        inc_number_of_attack(randomTile?.value || 999);
       }
     }
     if (containerType === DICE_TILES_ENUM.DEFENSE) {
@@ -115,6 +121,7 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
           set_used_defense_dices([
             { ...randomFromShuffled, rolled_value: randomTile?.value },
           ]);
+        inc_number_of_defense(randomTile?.value || 999);
       } else {
         const copiedArray = used_defense_dices ? [...used_defense_dices] : [];
         const copiedTempArray = [...temp_used_defense_dices];
@@ -133,6 +140,7 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
             ...copiedArray,
             { ...randomFromShuffled, rolled_value: randomTile?.value },
           ]);
+        inc_number_of_defense(randomTile?.value || 999);
       }
     }
     if (containerType === DICE_TILES_ENUM.MAGIC) {
@@ -151,6 +159,7 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
           set_used_magic_dices([
             { ...randomFromShuffled, rolled_value: randomTile?.value },
           ]);
+        inc_number_of_magic(randomTile?.value || 999);
       } else {
         const copiedArray = used_magic_dices ? [...used_magic_dices] : [];
         const copiedTempArray = [...temp_used_magic_dices];
@@ -168,6 +177,7 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
             ...copiedArray,
             { ...randomFromShuffled, rolled_value: randomTile?.value },
           ]);
+        inc_number_of_magic(randomTile?.value || 999);
       }
     }
   };

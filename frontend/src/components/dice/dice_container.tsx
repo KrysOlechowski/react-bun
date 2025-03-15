@@ -8,8 +8,10 @@ import {
   DEFAULT_MAGIC_DICE,
 } from "./dice_const";
 import { DiceUsedContainer } from "./dice_used_container";
+import { useDiceStore } from "@/store/dice/dice_store";
 
 export const DiceContainer = () => {
+  const { reset_stats } = useDiceStore();
   const {
     attack_dices,
     set_attack_dices,
@@ -29,6 +31,7 @@ export const DiceContainer = () => {
 
   const onAddDice = (type: DICE_TILES_TYPE) => {
     set_reset_all_used_dices(true);
+    reset_stats();
     if (type === DICE_TILES_ENUM.ATTACK) {
       const newDice = { ...DEFAULT_ATTACK_DICE, index: attack_dices.length };
       set_attack_dices([...attack_dices, newDice]);

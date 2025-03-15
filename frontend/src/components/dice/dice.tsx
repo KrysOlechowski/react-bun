@@ -111,7 +111,7 @@ export const Dice = ({ dice }: Props) => {
   );
 };
 
-const EmptyDiceTileView = (tile_type: any) => {
+const EmptyDiceTileView = (_tile_type: any) => {
   return (
     <div className="m-1 relative w-20 h-20 p-1 border-solid border-2 border-black rounded-sm">
       <div className={`h-full p-2`}>X</div>

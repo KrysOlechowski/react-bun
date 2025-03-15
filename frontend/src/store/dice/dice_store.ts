@@ -1,5 +1,5 @@
 import { USER_DICES } from "@/components/dice/dice_const";
-import { DICE_TILES_ENUM, DICE_VALUE_TYPE } from "@/types/dice_types";
+import { DICE_VALUE_TYPE } from "@/types/dice_types";
 import { create } from "zustand";
 
 interface useDiceStore_Type {
