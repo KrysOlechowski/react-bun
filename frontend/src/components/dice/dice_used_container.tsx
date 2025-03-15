@@ -12,7 +12,8 @@ export const DiceUsedContainer = () => {
           {used_attack_dices?.map((dice) => {
             return (
               <h3 key={dice.type + dice.index}>
-                {dice.attack_value} - {dice.index}{" "}
+                <div>Dice Index - {dice.index} </div>
+                <div>Dice Rolled Value - {dice.rolled_value}</div>
               </h3>
             );
           })}
@@ -24,7 +25,8 @@ export const DiceUsedContainer = () => {
           {used_defense_dices?.map((dice) => {
             return (
               <h3 key={dice.type + dice.index}>
-                {dice.attack_value} - {dice.index}{" "}
+                <div>Dice Index - {dice.index} </div>
+                <div>Dice Rolled Value - {dice.rolled_value}</div>
               </h3>
             );
           })}
@@ -37,7 +39,8 @@ export const DiceUsedContainer = () => {
           {used_magic_dices?.map((dice) => {
             return (
               <h3 key={dice.type + dice.index}>
-                {dice.attack_value} - {dice.index}{" "}
+                <div>Dice Index - {dice.index} </div>
+                <div>Dice Rolled Value - {dice.rolled_value}</div>
               </h3>
             );
           })}

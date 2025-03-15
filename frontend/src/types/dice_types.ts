@@ -21,6 +21,7 @@ export type DICE_VALUE_TYPE = {
   defense_value: number;
   magic_value: number;
   values: DICE_VALUES_TILES[];
+  rolled_value?: number;
 };
 
 export enum DICE_TILES_POWERS_TYPES {

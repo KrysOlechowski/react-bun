@@ -64,7 +64,19 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
         const randomFromShuffled = shuffledArray.pop();
 
         set_temp_used_attack_dices(shuffledArray);
-        randomFromShuffled && set_used_attack_dices([randomFromShuffled]);
+        const randomTile =
+          randomFromShuffled &&
+          randomFromShuffled.values[
+            Math.floor(Math.random() * randomFromShuffled.values.length)
+          ];
+
+        randomFromShuffled &&
+          set_used_attack_dices([
+            {
+              ...randomFromShuffled,
+              rolled_value: randomTile?.value,
+            },
+          ]);
       } else {
         const copiedArray = used_attack_dices ? [...used_attack_dices] : [];
         const copiedTempArray = [...temp_used_attack_dices];
@@ -72,8 +84,17 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
         const randomFromShuffled = copiedTempArray.pop();
 
         set_temp_used_attack_dices(copiedTempArray);
+
+        const randomTile =
+          randomFromShuffled &&
+          randomFromShuffled.values[
+            Math.floor(Math.random() * randomFromShuffled.values.length)
+          ];
         randomFromShuffled &&
-          set_used_attack_dices([...copiedArray, randomFromShuffled]);
+          set_used_attack_dices([
+            ...copiedArray,
+            { ...randomFromShuffled, rolled_value: randomTile?.value },
+          ]);
       }
     }
     if (containerType === DICE_TILES_ENUM.DEFENSE) {
@@ -83,7 +104,17 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
         const randomFromShuffled = shuffledArray.pop();
 
         set_temp_used_defense_dices(shuffledArray);
-        randomFromShuffled && set_used_defense_dices([randomFromShuffled]);
+
+        const randomTile =
+          randomFromShuffled &&
+          randomFromShuffled.values[
+            Math.floor(Math.random() * randomFromShuffled.values.length)
+          ];
+
+        randomFromShuffled &&
+          set_used_defense_dices([
+            { ...randomFromShuffled, rolled_value: randomTile?.value },
+          ]);
       } else {
         const copiedArray = used_defense_dices ? [...used_defense_dices] : [];
         const copiedTempArray = [...temp_used_defense_dices];
@@ -91,8 +122,17 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
         const randomFromShuffled = copiedTempArray.pop();
 
         set_temp_used_defense_dices(copiedTempArray);
+
+        const randomTile =
+          randomFromShuffled &&
+          randomFromShuffled.values[
+            Math.floor(Math.random() * randomFromShuffled.values.length)
+          ];
         randomFromShuffled &&
-          set_used_defense_dices([...copiedArray, randomFromShuffled]);
+          set_used_defense_dices([
+            ...copiedArray,
+            { ...randomFromShuffled, rolled_value: randomTile?.value },
+          ]);
       }
     }
     if (containerType === DICE_TILES_ENUM.MAGIC) {
@@ -102,16 +142,32 @@ export const DiceContainerV2 = ({ containerType, dices, onAddDice }: Props) => {
         const randomFromShuffled = shuffledArray.pop();
 
         set_temp_used_magic_dices(shuffledArray);
-        randomFromShuffled && set_used_magic_dices([randomFromShuffled]);
+        const randomTile =
+          randomFromShuffled &&
+          randomFromShuffled.values[
+            Math.floor(Math.random() * randomFromShuffled.values.length)
+          ];
+        randomFromShuffled &&
+          set_used_magic_dices([
+            { ...randomFromShuffled, rolled_value: randomTile?.value },
+          ]);
       } else {
         const copiedArray = used_magic_dices ? [...used_magic_dices] : [];
         const copiedTempArray = [...temp_used_magic_dices];
 
         const randomFromShuffled = copiedTempArray.pop();
+        const randomTile =
+          randomFromShuffled &&
+          randomFromShuffled.values[
+            Math.floor(Math.random() * randomFromShuffled.values.length)
+          ];
 
         set_temp_used_magic_dices(copiedTempArray);
         randomFromShuffled &&
-          set_used_magic_dices([...copiedArray, randomFromShuffled]);
+          set_used_magic_dices([
+            ...copiedArray,
+            { ...randomFromShuffled, rolled_value: randomTile?.value },
+          ]);
       }
     }
   };
