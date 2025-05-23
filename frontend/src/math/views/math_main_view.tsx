@@ -22,37 +22,59 @@ const TYPE_OF_SORT = "sort_des";
 
 export const MathMainView = () => {
   const [answers, setAnswers] = useState<MATH_TILES_TYPE>([]);
+  const [prevAnswers, setPrevAnswers] = useState<MATH_TILES_TYPE>([]);
+
+  const [valueRemain, setValueRemain] = useState<number | null>(null);
+  const [prevValueRemain, setPrevValueRemain] = useState<number | null>(null);
+
   const [numberOfClicksRemain, setNumbersOfClicksRemain] = useState<
     number | null
   >(null);
-  const [valueRemain, setValueRemain] = useState<number | null>(null);
+  const [prevNumberOfClicksRemain, setPrevNumbersOfClicksRemain] = useState<
+    number | null
+  >(null);
+
   const [correctAnswer, setCorrectAnswer] = useState<number | null>(null);
 
-  const random_correct_numbers = getCorrectRandomNumbers(
-    FIRST_NUMBER_MIN_VALUE,
-    NUMBER_OF_CORRECT_TILES,
-    MINIMAL_TILE_VALUE,
-    MAXIMUN_TILE_VALUE
-  );
-  const random_wrong_numbers = getWrongRandomNumbers(
-    FIRST_NUMBER_WRONG_MIN_VALUE,
-    NUMBER_OF_TOTAL_TILES - NUMBER_OF_CORRECT_TILES,
-    MINIMAL_TILE_VALUE,
-    MAXIMUN_TILE_VALUE
-  );
+  if (prevAnswers.length === 0) {
+    const random_correct_numbers = getCorrectRandomNumbers(
+      FIRST_NUMBER_MIN_VALUE,
+      NUMBER_OF_CORRECT_TILES,
+      MINIMAL_TILE_VALUE,
+      MAXIMUN_TILE_VALUE
+    );
+    const random_wrong_numbers = getWrongRandomNumbers(
+      FIRST_NUMBER_WRONG_MIN_VALUE,
+      NUMBER_OF_TOTAL_TILES - NUMBER_OF_CORRECT_TILES,
+      MINIMAL_TILE_VALUE,
+      MAXIMUN_TILE_VALUE
+    );
 
-  const merged_numbers = [...random_correct_numbers, ...random_wrong_numbers];
+    const merged_numbers = [...random_correct_numbers, ...random_wrong_numbers];
 
-  const shuffled_numbers = shuffleOrSort(merged_numbers, TYPE_OF_SORT);
+    const shuffled_numbers = shuffleOrSort(merged_numbers, TYPE_OF_SORT);
 
-  const correct_answer = sumUpCorrectValues(random_correct_numbers);
+    const correct_answer = sumUpCorrectValues(random_correct_numbers);
+
+    setAnswers(shuffled_numbers);
+    setPrevAnswers(shuffled_numbers);
+
+    setValueRemain(correct_answer);
+    setPrevValueRemain(correct_answer);
+
+    setNumbersOfClicksRemain(NUMBER_OF_TILES_TO_CLICK);
+    setPrevNumbersOfClicksRemain(NUMBER_OF_TILES_TO_CLICK);
+
+    setCorrectAnswer(correct_answer);
+  }
 
   useEffect(() => {
-    setAnswers(shuffled_numbers);
-    setNumbersOfClicksRemain(NUMBER_OF_TILES_TO_CLICK);
-    setCorrectAnswer(correct_answer);
-    setValueRemain(correct_answer);
-  }, []);
+    if (answers.length === 0 && prevAnswers.length > 0) {
+      setAnswers(prevAnswers);
+      setValueRemain(prevValueRemain);
+      setNumbersOfClicksRemain(prevNumberOfClicksRemain);
+    }
+  }, [answers]);
 
   console.log(correctAnswer);
 
@@ -62,14 +84,20 @@ export const MathMainView = () => {
   };
 
   if (
-    (valueRemain && valueRemain < 0) ||
-    (numberOfClicksRemain === 0 && valueRemain && valueRemain > 0)
+    numberOfClicksRemain !== null &&
+    numberOfClicksRemain > 0 &&
+    valueRemain !== null &&
+    valueRemain <= 0
   ) {
     console.log("You loose");
   }
   if (numberOfClicksRemain === 0 && valueRemain === 0) {
     console.log("You won");
   }
+
+  const onButtonClear = () => {
+    setAnswers([]);
+  };
 
   return (
     <div>
@@ -103,6 +131,10 @@ export const MathMainView = () => {
       <div className="flex column text-sm">
         <span>Clicks:</span>
         <span>{numberOfClicksRemain}</span>
+      </div>
+
+      <div className="flex column text-sm">
+        <button onClick={onButtonClear}>Clear</button>
       </div>
     </div>
   );
