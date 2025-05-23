@@ -84,10 +84,11 @@ export const MathMainView = () => {
   };
 
   if (
-    numberOfClicksRemain !== null &&
-    numberOfClicksRemain > 0 &&
-    valueRemain !== null &&
-    valueRemain <= 0
+    (numberOfClicksRemain === 0 && valueRemain !== 0) ||
+    (numberOfClicksRemain !== null &&
+      numberOfClicksRemain > 0 &&
+      valueRemain !== null &&
+      valueRemain <= 0)
   ) {
     console.log("You loose");
   }
