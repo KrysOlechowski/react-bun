@@ -9,6 +9,7 @@ import {
 } from "./dice_const";
 import { DiceUsedContainer } from "./dice_used_container";
 import { useDiceStore } from "@/store/dice/dice_store";
+import { DiceTestFile } from "./dice_test_file";
 
 export const DiceContainer = () => {
   const { reset_stats } = useDiceStore();
@@ -49,6 +50,7 @@ export const DiceContainer = () => {
 
   return (
     <>
+      <DiceTestFile />
       <DiceTestView />
       <DiceUsedContainer />
       <div className="p-2 flex">

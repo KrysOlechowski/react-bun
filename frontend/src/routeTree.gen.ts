@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as MathImport } from './routes/math'
 import { Route as LoginImport } from './routes/login'
 import { Route as JsImport } from './routes/js'
 import { Route as DiceImport } from './routes/dice'
@@ -18,6 +19,12 @@ import { Route as AdminImport } from './routes/admin'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const MathRoute = MathImport.update({
+  id: '/math',
+  path: '/math',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const LoginRoute = LoginImport.update({
   id: '/login',
@@ -88,6 +95,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
+    '/math': {
+      id: '/math'
+      path: '/math'
+      fullPath: '/math'
+      preLoaderRoute: typeof MathImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -99,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/dice': typeof DiceRoute
   '/js': typeof JsRoute
   '/login': typeof LoginRoute
+  '/math': typeof MathRoute
 }
 
 export interface FileRoutesByTo {
@@ -107,6 +122,7 @@ export interface FileRoutesByTo {
   '/dice': typeof DiceRoute
   '/js': typeof JsRoute
   '/login': typeof LoginRoute
+  '/math': typeof MathRoute
 }
 
 export interface FileRoutesById {
@@ -116,14 +132,15 @@ export interface FileRoutesById {
   '/dice': typeof DiceRoute
   '/js': typeof JsRoute
   '/login': typeof LoginRoute
+  '/math': typeof MathRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/dice' | '/js' | '/login'
+  fullPaths: '/' | '/admin' | '/dice' | '/js' | '/login' | '/math'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/dice' | '/js' | '/login'
-  id: '__root__' | '/' | '/admin' | '/dice' | '/js' | '/login'
+  to: '/' | '/admin' | '/dice' | '/js' | '/login' | '/math'
+  id: '__root__' | '/' | '/admin' | '/dice' | '/js' | '/login' | '/math'
   fileRoutesById: FileRoutesById
 }
 
@@ -133,6 +150,7 @@ export interface RootRouteChildren {
   DiceRoute: typeof DiceRoute
   JsRoute: typeof JsRoute
   LoginRoute: typeof LoginRoute
+  MathRoute: typeof MathRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -141,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiceRoute: DiceRoute,
   JsRoute: JsRoute,
   LoginRoute: LoginRoute,
+  MathRoute: MathRoute,
 }
 
 export const routeTree = rootRoute
@@ -157,7 +176,8 @@ export const routeTree = rootRoute
         "/admin",
         "/dice",
         "/js",
-        "/login"
+        "/login",
+        "/math"
       ]
     },
     "/": {
@@ -174,6 +194,9 @@ export const routeTree = rootRoute
     },
     "/login": {
       "filePath": "login.tsx"
+    },
+    "/math": {
+      "filePath": "math.tsx"
     }
   }
 }
