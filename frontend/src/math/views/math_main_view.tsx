@@ -6,6 +6,7 @@ import {
   sumUpCorrectValues,
 } from "../utils/math_numbers_utils";
 import { MATH_TILE_TYPE, MATH_TILES_TYPE } from "../types/math_types";
+import { MATH_VIEW, useMathGameSettings } from "../store/math_game_settings";
 
 const NUMBER_OF_CORRECT_TILES = 3;
 const NUMBER_OF_TOTAL_TILES = 6;
@@ -15,12 +16,14 @@ const NUMBER_OF_TILES_TO_CLICK = NUMBER_OF_CORRECT_TILES;
 const FIRST_NUMBER_MIN_VALUE = 7;
 const FIRST_NUMBER_WRONG_MIN_VALUE = 7;
 
-const MINIMAL_TILE_VALUE = 1;
+const MINIMUM_TILE_VALUE = 1;
 const MAXIMUN_TILE_VALUE = 9;
 
 const TYPE_OF_SORT = "sort_des";
 
 export const MathMainView = () => {
+  const { set_game_view } = useMathGameSettings();
+
   const [answers, setAnswers] = useState<MATH_TILES_TYPE>([]);
   const [prevAnswers, setPrevAnswers] = useState<MATH_TILES_TYPE>([]);
 
@@ -40,13 +43,13 @@ export const MathMainView = () => {
     const random_correct_numbers = getCorrectRandomNumbers(
       FIRST_NUMBER_MIN_VALUE,
       NUMBER_OF_CORRECT_TILES,
-      MINIMAL_TILE_VALUE,
+      MINIMUM_TILE_VALUE,
       MAXIMUN_TILE_VALUE
     );
     const random_wrong_numbers = getWrongRandomNumbers(
       FIRST_NUMBER_WRONG_MIN_VALUE,
       NUMBER_OF_TOTAL_TILES - NUMBER_OF_CORRECT_TILES,
-      MINIMAL_TILE_VALUE,
+      MINIMUM_TILE_VALUE,
       MAXIMUN_TILE_VALUE
     );
 
@@ -100,6 +103,10 @@ export const MathMainView = () => {
     setAnswers([]);
   };
 
+  const onGameEnd = () => {
+    set_game_view(MATH_VIEW.idle);
+  };
+
   return (
     <div>
       <div className="flex">
@@ -137,6 +144,9 @@ export const MathMainView = () => {
       <div className="flex column text-sm">
         <button onClick={onButtonClear}>Clear</button>
       </div>
+      <button className="w-10 h-10 border p-3 m-3" onClick={onGameEnd}>
+        End Game
+      </button>
     </div>
   );
 };

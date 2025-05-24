@@ -1,4 +1,4 @@
-import { MathMainView } from "@/math/views/math_main_view";
+import { MathContainer } from "@/math/components/math_container";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/math")({
@@ -8,9 +8,7 @@ export const Route = createFileRoute("/math")({
 function RouteComponent() {
   return (
     <>
-      <div></div>
-      <MathMainView />
-      <div></div>
+      <MathContainer />
     </>
   );
 }
