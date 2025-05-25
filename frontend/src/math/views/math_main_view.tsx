@@ -13,6 +13,7 @@ import { ButtonEndGame } from "../components/buttons/button_end_game";
 import { RemainValue } from "../components/remain_value";
 import { Equation } from "../components/equation";
 import { TilesContainer } from "../components/tiles_container";
+import { ProgressBar } from "../components/progress_bar";
 
 const NUMBER_OF_CORRECT_TILES = 3;
 const NUMBER_OF_TOTAL_TILES = 6;
@@ -125,6 +126,8 @@ export const MathMainView = () => {
       <ButtonClear onButtonClear={onButtonClear} />
 
       <ButtonEndGame onGameEnd={onGameEnd} />
+
+      <ProgressBar />
     </div>
   );
 };
