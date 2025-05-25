@@ -14,6 +14,7 @@ import { RemainValue } from "../components/remain_value";
 import { Equation } from "../components/equation";
 import { TilesContainer } from "../components/tiles_container";
 import { ProgressBar } from "../components/progress_bar";
+import { NextStepButton } from "../components/buttons/next_step_button";
 
 const NUMBER_OF_CORRECT_TILES = 3;
 const NUMBER_OF_TOTAL_TILES = 6;
@@ -114,6 +115,10 @@ export const MathMainView = () => {
     set_game_view(MATH_VIEW.idle);
   };
 
+  const onNextStep = () => {
+    console.log("Next step");
+  };
+
   return (
     <div>
       <TilesContainer tiles={answers} onTileClick={onTileClick} />
@@ -124,6 +129,8 @@ export const MathMainView = () => {
       <ClicksRemain numberOfClicksRemain={numberOfClicksRemain} />
 
       <ButtonClear onButtonClear={onButtonClear} />
+
+      <NextStepButton onNextStep={onNextStep} />
 
       <ButtonEndGame onGameEnd={onGameEnd} />
 

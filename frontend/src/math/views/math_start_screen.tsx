@@ -3,7 +3,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useMathGeneralSettings } from "../store/math_general_settings_store";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 export const MathStartScreen = () => {
-  const { set_game_view } = useMathGameSettings();
+  const { set_game_view, set_difficulty_current_level } = useMathGameSettings();
   const {
     is_auto_next_step,
     set_is_auto_next_step,
@@ -11,8 +11,8 @@ export const MathStartScreen = () => {
     set_is_timer_disabled,
     is_level_difficulty_increment,
     set_is_level_difficulty_increment,
-    difficulty_level,
-    set_difficulty_level,
+    difficulty_start_level,
+    set_difficulty_start_level,
   } = useMathGeneralSettings();
 
   const onGameStart = () => {
@@ -44,7 +44,8 @@ export const MathStartScreen = () => {
   };
 
   const onDifficultyChange = (e: string) => {
-    set_difficulty_level(Number(e));
+    set_difficulty_start_level(Number(e));
+    set_difficulty_current_level(Number(e));
   };
 
   return (
@@ -77,12 +78,12 @@ export const MathStartScreen = () => {
         Choose difficulty level:
         <ToggleGroup
           onValueChange={onDifficultyChange}
-          defaultValue={difficulty_level.toString()}
+          defaultValue={difficulty_start_level.toString()}
           type="single"
         >
           <ToggleGroupItem value="1">Easy</ToggleGroupItem>
-          <ToggleGroupItem value="2">Medium</ToggleGroupItem>
-          <ToggleGroupItem value="3">Hard</ToggleGroupItem>
+          <ToggleGroupItem value="3">Medium</ToggleGroupItem>
+          <ToggleGroupItem value="5">Hard</ToggleGroupItem>
         </ToggleGroup>
       </div>
       <button className=" w-auto h-15 border p-3 m-3" onClick={onGameStart}>

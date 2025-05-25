@@ -1,5 +1,5 @@
-export const MATH_LEVELS = [
-  {
+export const MATH_LEVELS = {
+  LEVEL_1: {
     LEVEL: 1,
     TIMER: 10000,
     NUMBER_OF_CORRECT_TILES: 2,
@@ -14,7 +14,7 @@ export const MATH_LEVELS = [
     NUMBER_OF_HIDDEN_TILES: 0,
     IS_REMAIN_VISIBLE: true,
   },
-  {
+  LEVEL_2: {
     LEVEL: 2,
     TIMER: 10000,
     NUMBER_OF_CORRECT_TILES: 3,
@@ -29,7 +29,7 @@ export const MATH_LEVELS = [
     NUMBER_OF_HIDDEN_TILES: 0,
     IS_REMAIN_VISIBLE: true,
   },
-  {
+  LEVEL_3: {
     LEVEL: 3,
     TIMER: 15000,
     NUMBER_OF_CORRECT_TILES: 3,
@@ -44,7 +44,7 @@ export const MATH_LEVELS = [
     NUMBER_OF_HIDDEN_TILES: 0,
     IS_REMAIN_VISIBLE: true,
   },
-  {
+  LEVEL_4: {
     LEVEL: 4,
     TIMER: 15000,
     NUMBER_OF_CORRECT_TILES: 4,
@@ -59,7 +59,7 @@ export const MATH_LEVELS = [
     NUMBER_OF_HIDDEN_TILES: 0,
     IS_REMAIN_VISIBLE: true,
   },
-  {
+  LEVEL_5: {
     LEVEL: 5,
     TIMER: 20000,
     NUMBER_OF_CORRECT_TILES: 4,
@@ -74,7 +74,7 @@ export const MATH_LEVELS = [
     NUMBER_OF_HIDDEN_TILES: 1,
     IS_REMAIN_VISIBLE: true,
   },
-  {
+  LEVEL_6: {
     LEVEL: 6,
     TIMER: 20000,
     NUMBER_OF_CORRECT_TILES: 4,
@@ -89,4 +89,4 @@ export const MATH_LEVELS = [
     NUMBER_OF_HIDDEN_TILES: 1,
     IS_REMAIN_VISIBLE: false,
   },
-];
+};
