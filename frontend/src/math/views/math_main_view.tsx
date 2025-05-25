@@ -7,6 +7,12 @@ import {
 } from "../utils/math_numbers_utils";
 import { MATH_TILE_TYPE, MATH_TILES_TYPE } from "../types/math_types";
 import { MATH_VIEW, useMathGameSettings } from "../store/math_game_settings";
+import { ClicksRemain } from "../components/clicks_remain";
+import { ButtonClear } from "../components/buttons/button_clear";
+import { ButtonEndGame } from "../components/buttons/button_end_game";
+import { RemainValue } from "../components/remain_value";
+import { Equation } from "../components/equation";
+import { TilesContainer } from "../components/tiles_container";
 
 const NUMBER_OF_CORRECT_TILES = 3;
 const NUMBER_OF_TOTAL_TILES = 6;
@@ -109,44 +115,16 @@ export const MathMainView = () => {
 
   return (
     <div>
-      <div className="flex">
-        {answers ? (
-          answers.map((tile) => {
-            const styles = `p-3 m-3  w-10 h-10 border ${tile.value ? "text-green-700" : "text-red-700"}`;
-            return (
-              <button
-                onClick={(event) => {
-                  onTileClick(tile),
-                    (event.currentTarget.disabled = true),
-                    (event.currentTarget.style.backgroundColor = "red");
-                }}
-                key={tile.id}
-                className={styles}
-              >
-                {tile.value}
-              </button>
-            );
-          })
-        ) : (
-          <div>loading</div>
-        )}
-      </div>
-      <div className="w-20 h-20 border text-xl">Correct:{correctAnswer}</div>
-      <div className="w-20 h-20 border text-xl">
-        Remain:{valueRemain && valueRemain > 0 ? valueRemain : "XX"}
-      </div>
+      <TilesContainer tiles={answers} onTileClick={onTileClick} />
 
-      <div className="flex column text-sm">
-        <span>Clicks:</span>
-        <span>{numberOfClicksRemain}</span>
-      </div>
+      <Equation correctAnswer={correctAnswer} />
+      <RemainValue valueRemain={valueRemain} />
 
-      <div className="flex column text-sm">
-        <button onClick={onButtonClear}>Clear</button>
-      </div>
-      <button className="w-10 h-10 border p-3 m-3" onClick={onGameEnd}>
-        End Game
-      </button>
+      <ClicksRemain numberOfClicksRemain={numberOfClicksRemain} />
+
+      <ButtonClear onButtonClear={onButtonClear} />
+
+      <ButtonEndGame onGameEnd={onGameEnd} />
     </div>
   );
 };

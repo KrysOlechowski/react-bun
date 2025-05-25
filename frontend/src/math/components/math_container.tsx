@@ -1,5 +1,5 @@
 import { MathMainView } from "../views/math_main_view";
-import { MathStartScreen } from "./math_start_screen";
+import { MathStartScreen } from "../views/math_start_screen";
 import { MATH_VIEW, useMathGameSettings } from "../store/math_game_settings";
 
 export const MathContainer = () => {

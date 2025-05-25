@@ -72,7 +72,7 @@ export const shuffleOrSort = (
   return newArr;
 };
 
-export const sumUpCorrectValues = (arr: MATH_TILES_TYPE) => {
+export const sumUpCorrectValues = (arr: MATH_TILES_TYPE): number => {
   let num = 0;
   for (const { value } of arr) {
     num = num + value;
