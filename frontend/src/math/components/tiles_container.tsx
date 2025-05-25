@@ -6,7 +6,6 @@ type Props = {
 };
 
 export const TilesContainer = ({ tiles, onTileClick }: Props) => {
-  console.log(tiles);
   return (
     <div className="flex">
       {tiles ? (

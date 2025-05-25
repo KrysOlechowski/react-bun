@@ -40,7 +40,6 @@ export const MathMainView = () => {
   } = useMathGameSettings();
 
   const [answers, setAnswers] = useState<MATH_TILES_TYPE>([]);
-  const [prevAnswers, setPrevAnswers] = useState<MATH_TILES_TYPE>([]);
 
   const [valueRemain, setValueRemain] = useState<number | null>(null);
   const [prevValueRemain, setPrevValueRemain] = useState<number | null>(null);
@@ -76,7 +75,6 @@ export const MathMainView = () => {
     const correct_answer = sumUpCorrectValues(random_correct_numbers);
 
     setAnswers(shuffled_numbers);
-    setPrevAnswers(shuffled_numbers);
 
     setValueRemain(correct_answer);
     setPrevValueRemain(correct_answer);
@@ -86,29 +84,6 @@ export const MathMainView = () => {
 
     setCorrectAnswer(correct_answer);
   }, [current_step]);
-
-  useEffect(() => {
-    if (answers.length === 0 && prevAnswers.length > 0) {
-      console.log("11111");
-
-      setAnswers(prevAnswers);
-      setValueRemain(prevValueRemain);
-      setNumbersOfClicksRemain(prevNumberOfClicksRemain);
-    }
-  }, [answers]);
-
-  console.log(current_step);
-
-  const onTileClick = (tile: MATH_TILE_TYPE) => {
-    console.log(tile);
-    const arrayCopy = [...answers];
-    const objIndex = answers.findIndex((obj) => obj.id == tile.id);
-    arrayCopy[objIndex].is_clicked = true;
-
-    setNumbersOfClicksRemain((prev) => (prev ? prev - 1 : null));
-    setValueRemain((prev) => (prev ? prev - tile.value : null));
-    setAnswers(arrayCopy);
-  };
 
   if (
     (numberOfClicksRemain === 0 && valueRemain !== 0) ||
@@ -121,15 +96,22 @@ export const MathMainView = () => {
   }
   if (numberOfClicksRemain === 0 && valueRemain === 0) {
     console.log("You won");
-    // increase_number_of_correct_answers();
-    // increase_current_step();
   }
 
-  useEffect(() => {}, []);
-
   const onButtonClear = () => {
+    let shallow = structuredClone(answers);
+    const withClearValues = shallow.map((a) => {
+      return {
+        id: a.id,
+        value: a.value,
+        is_correct: a.is_correct,
+        is_clicked: false,
+      };
+    });
     set_healthbar_value(healthbar_value - 15);
-    setAnswers([]);
+    setValueRemain(prevValueRemain);
+    setNumbersOfClicksRemain(prevNumberOfClicksRemain);
+    setAnswers(withClearValues);
   };
 
   const onGameEnd = () => {
@@ -137,8 +119,17 @@ export const MathMainView = () => {
   };
 
   const onNextStep = () => {
-    console.log("Next step");
     increase_current_step();
+  };
+
+  const onTileClick = (tile: MATH_TILE_TYPE) => {
+    const arrayCopy = [...answers];
+    const objIndex = arrayCopy.findIndex((obj) => obj.id == tile.id);
+    arrayCopy[objIndex].is_clicked = true;
+
+    setNumbersOfClicksRemain((prev) => (prev ? prev - 1 : null));
+    setValueRemain((prev) => (prev ? prev - tile.value : null));
+    setAnswers(arrayCopy);
   };
 
   return (
