@@ -14,6 +14,7 @@ export const getCorrectRandomNumbers = (
         value: randomIntFromInterval(firstNumber, maximumTileValue),
         is_correct: true,
         id: i,
+        is_clicked: false,
       });
     }
     if (i > 0) {
@@ -21,6 +22,7 @@ export const getCorrectRandomNumbers = (
         value: randomIntFromInterval(minimumTileValue, maximumTileValue),
         is_correct: true,
         id: i,
+        is_clicked: false,
       });
     }
   }
@@ -40,6 +42,7 @@ export const getWrongRandomNumbers = (
         value: randomIntFromInterval(firstNumber, maximumTileValue),
         is_correct: false,
         id: i + numberOfNumbers,
+        is_clicked: false,
       });
     }
     if (i > 0) {
@@ -47,6 +50,7 @@ export const getWrongRandomNumbers = (
         value: randomIntFromInterval(minimumTileValue, maximumTileValue),
         is_correct: false,
         id: i + numberOfNumbers,
+        is_clicked: false,
       });
     }
   }

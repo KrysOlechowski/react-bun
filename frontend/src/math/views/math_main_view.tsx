@@ -31,7 +31,13 @@ const MAXIMUN_TILE_VALUE = 9;
 const TYPE_OF_SORT = "sort_des";
 
 export const MathMainView = () => {
-  const { set_game_view } = useMathGameSettings();
+  const {
+    set_game_view,
+    healthbar_value,
+    set_healthbar_value,
+    current_step,
+    increase_current_step,
+  } = useMathGameSettings();
 
   const [answers, setAnswers] = useState<MATH_TILES_TYPE>([]);
   const [prevAnswers, setPrevAnswers] = useState<MATH_TILES_TYPE>([]);
@@ -48,7 +54,8 @@ export const MathMainView = () => {
 
   const [correctAnswer, setCorrectAnswer] = useState<number | null>(null);
 
-  if (prevAnswers.length === 0) {
+  useEffect(() => {
+    console.log("USE EFFECT CREATE NEW");
     const random_correct_numbers = getCorrectRandomNumbers(
       FIRST_NUMBER_MIN_VALUE,
       NUMBER_OF_CORRECT_TILES,
@@ -78,21 +85,29 @@ export const MathMainView = () => {
     setPrevNumbersOfClicksRemain(NUMBER_OF_TILES_TO_CLICK);
 
     setCorrectAnswer(correct_answer);
-  }
+  }, [current_step]);
 
   useEffect(() => {
     if (answers.length === 0 && prevAnswers.length > 0) {
+      console.log("11111");
+
       setAnswers(prevAnswers);
       setValueRemain(prevValueRemain);
       setNumbersOfClicksRemain(prevNumberOfClicksRemain);
     }
   }, [answers]);
 
-  console.log(correctAnswer);
+  console.log(current_step);
 
   const onTileClick = (tile: MATH_TILE_TYPE) => {
+    console.log(tile);
+    const arrayCopy = [...answers];
+    const objIndex = answers.findIndex((obj) => obj.id == tile.id);
+    arrayCopy[objIndex].is_clicked = true;
+
     setNumbersOfClicksRemain((prev) => (prev ? prev - 1 : null));
     setValueRemain((prev) => (prev ? prev - tile.value : null));
+    setAnswers(arrayCopy);
   };
 
   if (
@@ -106,9 +121,14 @@ export const MathMainView = () => {
   }
   if (numberOfClicksRemain === 0 && valueRemain === 0) {
     console.log("You won");
+    // increase_number_of_correct_answers();
+    // increase_current_step();
   }
 
+  useEffect(() => {}, []);
+
   const onButtonClear = () => {
+    set_healthbar_value(healthbar_value - 15);
     setAnswers([]);
   };
 
@@ -118,6 +138,7 @@ export const MathMainView = () => {
 
   const onNextStep = () => {
     console.log("Next step");
+    increase_current_step();
   };
 
   return (
