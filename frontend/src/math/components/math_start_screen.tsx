@@ -1,18 +1,93 @@
 import { MATH_VIEW, useMathGameSettings } from "../store/math_game_settings";
-
+import { Checkbox } from "@/components/ui/checkbox";
+import { useMathGeneralSettings } from "../store/math_general_settings_store";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 export const MathStartScreen = () => {
   const { set_game_view } = useMathGameSettings();
+  const {
+    is_auto_next_step,
+    set_is_auto_next_step,
+    is_timer_disabled,
+    set_is_timer_disabled,
+    is_level_difficulty_increment,
+    set_is_level_difficulty_increment,
+    difficulty_level,
+    set_difficulty_level,
+  } = useMathGeneralSettings();
 
   const onGameStart = () => {
     set_game_view(MATH_VIEW.game);
   };
 
+  const onAutoStepClick = (isChecked: boolean) => {
+    if (isChecked) {
+      set_is_auto_next_step(true);
+    } else {
+      set_is_auto_next_step(false);
+    }
+  };
+
+  const onDisableTimer = (isChecked: boolean) => {
+    if (isChecked) {
+      set_is_timer_disabled(true);
+    } else {
+      set_is_timer_disabled(false);
+    }
+  };
+
+  const onIncrementLevelDifficulty = (isChecked: boolean) => {
+    if (isChecked) {
+      set_is_level_difficulty_increment(true);
+    } else {
+      set_is_level_difficulty_increment(false);
+    }
+  };
+
+  const onDifficultyChange = (e: string) => {
+    set_difficulty_level(Number(e));
+  };
+
   return (
-    <div>
-      <button className="w-10 h-10 border p-3 m-3" onClick={onGameStart}>
+    <div className="flex flex-col ">
+      <div className=" w-auto h-15 border p-3 m-3">
+        <Checkbox
+          checked={is_auto_next_step}
+          onCheckedChange={onAutoStepClick}
+        />
+        Auto next step
+      </div>
+
+      <div className=" w-auto h-15 border p-3 m-3">
+        <Checkbox
+          checked={is_timer_disabled}
+          onCheckedChange={onDisableTimer}
+        />
+        Disable timer
+      </div>
+
+      <div className=" w-auto h-15 border p-3 m-3">
+        <Checkbox
+          checked={is_level_difficulty_increment}
+          onCheckedChange={onIncrementLevelDifficulty}
+        />
+        Increment level difficulty
+      </div>
+
+      <div>
+        Choose difficulty level:
+        <ToggleGroup
+          onValueChange={onDifficultyChange}
+          defaultValue={difficulty_level.toString()}
+          type="single"
+        >
+          <ToggleGroupItem value="1">Easy</ToggleGroupItem>
+          <ToggleGroupItem value="2">Medium</ToggleGroupItem>
+          <ToggleGroupItem value="3">Hard</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+      <button className=" w-auto h-15 border p-3 m-3" onClick={onGameStart}>
         Start Game
       </button>
-      Math Start screen
     </div>
   );
 };
