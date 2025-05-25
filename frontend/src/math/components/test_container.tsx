@@ -15,6 +15,7 @@ export const TestContainer = () => {
     number_of_wrong_answers,
     difficulty_current_level,
     current_step,
+    current_points,
   } = useMathGameSettings();
   return (
     <div className="flex flex-row">
@@ -33,6 +34,7 @@ export const TestContainer = () => {
       <div className="flex flex-col w-1/2 p-5 m2 border">
         <h3>Game Setting:</h3>
         <span>Game view: {game_view}</span>
+        <span>Points: {current_points}</span>
         <span>Current step: {current_step}</span>
         <span>Correct answers: {number_of_correct_answers}</span>
         <span>Wrong answers: {number_of_wrong_answers}</span>

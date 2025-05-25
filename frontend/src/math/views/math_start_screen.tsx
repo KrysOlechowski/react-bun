@@ -3,8 +3,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useMathGeneralSettings } from "../store/math_general_settings_store";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useEffect } from "react";
+import { Score } from "../components/score";
 export const MathStartScreen = () => {
-  const { set_game_view, set_difficulty_current_level } = useMathGameSettings();
+  const { set_game_view, set_difficulty_current_level, set_is_game_end } =
+    useMathGameSettings();
   const {
     is_auto_next_step,
     set_is_auto_next_step,
@@ -18,6 +20,7 @@ export const MathStartScreen = () => {
 
   const onGameStart = () => {
     set_game_view(MATH_VIEW.game);
+    set_is_game_end(false);
   };
 
   const onAutoStepClick = (isChecked: boolean) => {
@@ -45,8 +48,14 @@ export const MathStartScreen = () => {
   };
 
   const onDifficultyChange = (e: string) => {
-    set_difficulty_start_level(Number(e));
-    set_difficulty_current_level(Number(e));
+    console.log(e);
+    if (!e) {
+      set_difficulty_start_level(1);
+      set_difficulty_current_level(1);
+    } else {
+      set_difficulty_start_level(Number(e));
+      set_difficulty_current_level(Number(e));
+    }
   };
 
   useEffect(() => {
@@ -55,6 +64,7 @@ export const MathStartScreen = () => {
 
   return (
     <div className="flex flex-col ">
+      <Score />
       <div className=" w-auto h-15 border p-3 m-3">
         <Checkbox
           checked={is_auto_next_step}

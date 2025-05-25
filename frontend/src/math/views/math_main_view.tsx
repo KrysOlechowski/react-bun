@@ -37,6 +37,10 @@ export const MathMainView = () => {
     set_healthbar_value,
     current_step,
     increase_current_step,
+    increase_number_of_correct_answers,
+    increase_number_of_wrong_answers,
+    current_points,
+    set_current_points,
   } = useMathGameSettings();
 
   const [answers, setAnswers] = useState<MATH_TILES_TYPE>([]);
@@ -85,18 +89,27 @@ export const MathMainView = () => {
     setCorrectAnswer(correct_answer);
   }, [current_step]);
 
-  if (
-    (numberOfClicksRemain === 0 && valueRemain !== 0) ||
-    (numberOfClicksRemain !== null &&
-      numberOfClicksRemain > 0 &&
-      valueRemain !== null &&
-      valueRemain <= 0)
-  ) {
-    console.log("You loose");
-  }
-  if (numberOfClicksRemain === 0 && valueRemain === 0) {
-    console.log("You won");
-  }
+  useEffect(() => {
+    //WINNING STEP:
+    if (numberOfClicksRemain === 0 && valueRemain === 0) {
+      console.log("YOU WON!");
+      increase_number_of_correct_answers();
+      set_current_points(current_points + 66);
+    }
+
+    //LOSING STEP:
+    if (
+      (numberOfClicksRemain === 0 && valueRemain !== 0) ||
+      (numberOfClicksRemain !== null &&
+        numberOfClicksRemain > 0 &&
+        valueRemain !== null &&
+        valueRemain <= 0)
+    ) {
+      console.log("YOU LOOSE!");
+      increase_number_of_wrong_answers();
+      set_healthbar_value(healthbar_value - 10);
+    }
+  }, [numberOfClicksRemain, valueRemain]);
 
   const onButtonClear = () => {
     let shallow = structuredClone(answers);

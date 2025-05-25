@@ -5,16 +5,18 @@ import { TestContainer } from "./test_container";
 import { useMathGeneralSettings } from "../store/math_general_settings_store";
 
 export const MathContainer = () => {
-  const { game_view } = useMathGameSettings();
+  const { game_view, is_game_end } = useMathGameSettings();
   const { is_test_mode, set_test_mode } = useMathGeneralSettings();
 
   const setTestMode = () => {
     is_test_mode ? set_test_mode(false) : set_test_mode(true);
   };
+
   return (
     <div className="relative h-screen">
-      {game_view === MATH_VIEW.idle && <MathStartScreen />}
+      {(game_view === MATH_VIEW.idle || is_game_end) && <MathStartScreen />}
       {game_view === MATH_VIEW.game && <MathMainView />}
+
       {is_test_mode && <TestContainer />}
       <button
         className="w-auto h-10 border absolute bottom-2 left-2"

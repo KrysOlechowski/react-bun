@@ -12,6 +12,9 @@ interface MATH_GAME_SETTINGS_TYPE {
   game_view: MATH_VIEW_TYPE;
   set_game_view: (view: MATH_VIEW_TYPE) => void;
 
+  is_game_end: boolean;
+  set_is_game_end: (bool: boolean) => void;
+
   difficulty_current_level: number;
   set_difficulty_current_level: (num: number) => void;
 
@@ -20,6 +23,9 @@ interface MATH_GAME_SETTINGS_TYPE {
 
   healthbar_value: number;
   set_healthbar_value: (num: number) => void;
+
+  current_points: number;
+  set_current_points: (num: number) => void;
 
   number_of_correct_answers: number;
   increase_number_of_correct_answers: () => void;
@@ -32,6 +38,9 @@ export const useMathGameSettings = create<MATH_GAME_SETTINGS_TYPE>((set) => ({
   game_view: MATH_VIEW.idle,
   set_game_view: (view: MATH_VIEW_TYPE) => set({ game_view: view }),
 
+  is_game_end: false,
+  set_is_game_end: (bool: boolean) => set({ is_game_end: bool }),
+
   difficulty_current_level: 1,
   set_difficulty_current_level: (num: number) =>
     set({ difficulty_current_level: num }),
@@ -42,8 +51,11 @@ export const useMathGameSettings = create<MATH_GAME_SETTINGS_TYPE>((set) => ({
       current_step: state.current_step + 1,
     })),
 
-  healthbar_value: 20,
+  healthbar_value: 30,
   set_healthbar_value: (num: number) => set({ healthbar_value: num }),
+
+  current_points: 0,
+  set_current_points: (num: number) => set({ current_points: num }),
 
   number_of_correct_answers: 0,
   increase_number_of_correct_answers: () =>

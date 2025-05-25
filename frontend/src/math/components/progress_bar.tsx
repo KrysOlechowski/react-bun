@@ -14,7 +14,7 @@ export const ProgressBar = () => {
       if (!is_timer_disabled) {
         setProgress((prevCount) => prevCount - 10);
       }
-    }, 1000);
+    }, 100);
 
     return () => clearInterval(interval);
   }, []);
