@@ -15,6 +15,7 @@ import { Equation } from "../components/equation";
 import { TilesContainer } from "../components/tiles_container";
 import { ProgressBar } from "../components/progress_bar";
 import { NextStepButton } from "../components/buttons/next_step_button";
+import { HealthBar } from "../components/healthbar";
 
 const NUMBER_OF_CORRECT_TILES = 3;
 const NUMBER_OF_TOTAL_TILES = 6;
@@ -121,6 +122,7 @@ export const MathMainView = () => {
 
   return (
     <div>
+      <HealthBar />
       <TilesContainer tiles={answers} onTileClick={onTileClick} />
 
       <Equation correctAnswer={correctAnswer} />

@@ -13,6 +13,7 @@ export const MATH_LEVELS = {
     EQUATION_LEVEL: 1,
     NUMBER_OF_HIDDEN_TILES: 0,
     IS_REMAIN_VISIBLE: true,
+    NUMBER_OF_STEPS: 5,
   },
   LEVEL_2: {
     LEVEL: 2,
@@ -28,6 +29,7 @@ export const MATH_LEVELS = {
     EQUATION_LEVEL: 1,
     NUMBER_OF_HIDDEN_TILES: 0,
     IS_REMAIN_VISIBLE: true,
+    NUMBER_OF_STEPS: 5,
   },
   LEVEL_3: {
     LEVEL: 3,
@@ -43,6 +45,7 @@ export const MATH_LEVELS = {
     EQUATION_LEVEL: 2,
     NUMBER_OF_HIDDEN_TILES: 0,
     IS_REMAIN_VISIBLE: true,
+    NUMBER_OF_STEPS: 5,
   },
   LEVEL_4: {
     LEVEL: 4,
@@ -58,6 +61,7 @@ export const MATH_LEVELS = {
     EQUATION_LEVEL: 2,
     NUMBER_OF_HIDDEN_TILES: 0,
     IS_REMAIN_VISIBLE: true,
+    NUMBER_OF_STEPS: 5,
   },
   LEVEL_5: {
     LEVEL: 5,
@@ -73,6 +77,7 @@ export const MATH_LEVELS = {
     EQUATION_LEVEL: 3,
     NUMBER_OF_HIDDEN_TILES: 1,
     IS_REMAIN_VISIBLE: true,
+    NUMBER_OF_STEPS: 5,
   },
   LEVEL_6: {
     LEVEL: 6,
@@ -88,5 +93,6 @@ export const MATH_LEVELS = {
     EQUATION_LEVEL: 4,
     NUMBER_OF_HIDDEN_TILES: 1,
     IS_REMAIN_VISIBLE: false,
+    NUMBER_OF_STEPS: 5,
   },
 };

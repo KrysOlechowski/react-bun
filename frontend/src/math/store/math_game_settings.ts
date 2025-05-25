@@ -15,6 +15,12 @@ interface MATH_GAME_SETTINGS_TYPE {
   difficulty_current_level: number;
   set_difficulty_current_level: (num: number) => void;
 
+  current_step: number;
+  increase_current_step: () => void;
+
+  healthbar_value: number;
+  set_healthbar_value: (num: number) => void;
+
   number_of_correct_answers: number;
   increase_number_of_correct_answers: () => void;
 
@@ -29,6 +35,15 @@ export const useMathGameSettings = create<MATH_GAME_SETTINGS_TYPE>((set) => ({
   difficulty_current_level: 1,
   set_difficulty_current_level: (num: number) =>
     set({ difficulty_current_level: num }),
+
+  current_step: 1,
+  increase_current_step: () =>
+    set((state) => ({
+      current_step: state.current_step + 1,
+    })),
+
+  healthbar_value: 20,
+  set_healthbar_value: (num: number) => set({ healthbar_value: num }),
 
   number_of_correct_answers: 0,
   increase_number_of_correct_answers: () =>

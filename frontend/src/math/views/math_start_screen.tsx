@@ -2,6 +2,7 @@ import { MATH_VIEW, useMathGameSettings } from "../store/math_game_settings";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useMathGeneralSettings } from "../store/math_general_settings_store";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { useEffect } from "react";
 export const MathStartScreen = () => {
   const { set_game_view, set_difficulty_current_level } = useMathGameSettings();
   const {
@@ -47,6 +48,10 @@ export const MathStartScreen = () => {
     set_difficulty_start_level(Number(e));
     set_difficulty_current_level(Number(e));
   };
+
+  useEffect(() => {
+    set_difficulty_current_level(difficulty_start_level);
+  }, [difficulty_start_level]);
 
   return (
     <div className="flex flex-col ">
