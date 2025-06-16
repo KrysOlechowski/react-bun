@@ -6,7 +6,7 @@ import {
   sumUpCorrectValues,
 } from "../utils/math_numbers_utils";
 import { MATH_TILE_TYPE, MATH_TILES_TYPE } from "../types/math_types";
-import { MATH_VIEW, useMathGameSettings } from "../store/math_game_settings";
+import { useMathGameSettings } from "../store/math_game_settings";
 import { ClicksRemain } from "../components/clicks_remain";
 import { ButtonClear } from "../components/buttons/button_clear";
 import { ButtonEndGame } from "../components/buttons/button_end_game";
@@ -32,7 +32,6 @@ const TYPE_OF_SORT = "sort_des";
 
 export const MathMainView = () => {
   const {
-    set_game_view,
     healthbar_value,
     set_healthbar_value,
     current_step,
@@ -105,7 +104,7 @@ export const MathMainView = () => {
         valueRemain !== null &&
         valueRemain <= 0)
     ) {
-      console.log("YOU LOOSE!");
+      console.log("LOOSE STEP");
       increase_number_of_wrong_answers();
       set_healthbar_value(healthbar_value - 10);
     }
@@ -125,10 +124,6 @@ export const MathMainView = () => {
     setValueRemain(prevValueRemain);
     setNumbersOfClicksRemain(prevNumberOfClicksRemain);
     setAnswers(withClearValues);
-  };
-
-  const onGameEnd = () => {
-    set_game_view(MATH_VIEW.idle);
   };
 
   const onNextStep = () => {
@@ -159,7 +154,7 @@ export const MathMainView = () => {
 
       <NextStepButton onNextStep={onNextStep} />
 
-      <ButtonEndGame onGameEnd={onGameEnd} />
+      <ButtonEndGame />
 
       <ProgressBar />
     </div>

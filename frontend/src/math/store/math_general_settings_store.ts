@@ -19,8 +19,8 @@ interface MATH_GENERAL_TESSINGS_TYPE {
 
   language: string;
 
-  persist_current_score: number;
-  set_persist_current_score: (num: number) => void;
+  persist_last_score: number;
+  set_persist_last_score: (num: number) => void;
   persist_correct_answers: number;
   set_persist_correct_answers: (num: number) => void;
   persist_wrong_answers: number;
@@ -58,9 +58,8 @@ export const useMathGeneralSettings = create<MATH_GENERAL_TESSINGS_TYPE>()(
 
       language: "eng", //TODO add
 
-      persist_current_score: 0,
-      set_persist_current_score: (num: number) =>
-        set({ persist_current_score: num }),
+      persist_last_score: 0,
+      set_persist_last_score: (num: number) => set({ persist_last_score: num }),
       persist_correct_answers: 0,
       set_persist_correct_answers: (num: number) =>
         set({ persist_correct_answers: num }),
@@ -80,7 +79,7 @@ export const useMathGeneralSettings = create<MATH_GENERAL_TESSINGS_TYPE>()(
     }),
     {
       name: "math-game-storage",
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

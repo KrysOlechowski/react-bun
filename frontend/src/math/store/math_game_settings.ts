@@ -20,6 +20,7 @@ interface MATH_GAME_SETTINGS_TYPE {
 
   current_step: number;
   increase_current_step: () => void;
+  reset_current_steps: () => void;
 
   healthbar_value: number;
   set_healthbar_value: (num: number) => void;
@@ -28,9 +29,11 @@ interface MATH_GAME_SETTINGS_TYPE {
   set_current_points: (num: number) => void;
 
   number_of_correct_answers: number;
+  set_number_of_correct_answers: (num: number) => void;
   increase_number_of_correct_answers: () => void;
 
   number_of_wrong_answers: number;
+  set_number_of_wrong_answers: (num: number) => void;
   increase_number_of_wrong_answers: () => void;
 }
 
@@ -50,6 +53,7 @@ export const useMathGameSettings = create<MATH_GAME_SETTINGS_TYPE>((set) => ({
     set((state) => ({
       current_step: state.current_step + 1,
     })),
+  reset_current_steps: () => set({ current_step: 1 }),
 
   healthbar_value: 30,
   set_healthbar_value: (num: number) => set({ healthbar_value: num }),
@@ -58,12 +62,16 @@ export const useMathGameSettings = create<MATH_GAME_SETTINGS_TYPE>((set) => ({
   set_current_points: (num: number) => set({ current_points: num }),
 
   number_of_correct_answers: 0,
+  set_number_of_correct_answers: (num: number) =>
+    set({ number_of_correct_answers: num }),
   increase_number_of_correct_answers: () =>
     set((state) => ({
       number_of_correct_answers: state.number_of_correct_answers + 1,
     })),
 
   number_of_wrong_answers: 0,
+  set_number_of_wrong_answers: (num: number) =>
+    set({ number_of_wrong_answers: num }),
   increase_number_of_wrong_answers: () =>
     set((state) => ({
       number_of_wrong_answers: state.number_of_wrong_answers + 1,

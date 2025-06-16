@@ -19,6 +19,7 @@ export const MathStartScreen = () => {
   } = useMathGeneralSettings();
 
   const onGameStart = () => {
+    console.log("game start");
     set_game_view(MATH_VIEW.game);
     set_is_game_end(false);
   };
